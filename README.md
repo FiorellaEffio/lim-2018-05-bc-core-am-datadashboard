@@ -39,7 +39,8 @@ y tomar decisiones mas rapidas y complejas en base a datos mas simples y sencill
 
 Debes hacer un _sketch_ (boceto) de tu solución usando papel y lápiz, tomarle
 una foto, subirla a tu repositorio y hacer mención del _sketch_ en tu `README.md`.
-
+![Con titulo](img/src/prototipo1.png "titulo")
+![Con titulo](img/src/prototipo2.png "titulo")
 #### 3) Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
 Lo siguiente es diseñar tu Interfaz de Usuario (UI por sus siglas en inglés).
