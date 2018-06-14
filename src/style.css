@@ -5,6 +5,26 @@ footer {
   background-color: yellow;
 }
 
+#userPhoto {
+  border-radius: 100%;
+  border: solid 5px;
+  width: 30%;
+  height: 30%;
+}
+
+main {
+  float: left;
+  background-color: yellow;
+  width: 20%;
+
+}
+
+figure {
+  float: right;
+  width: 70%;
+  border: solid;
+}
+
  #logo {
    width: 25%;
    height: 25%;
