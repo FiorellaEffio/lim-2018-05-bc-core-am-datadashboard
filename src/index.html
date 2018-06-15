@@ -8,13 +8,16 @@
   </head>
   <body>
     <header>
-      <img src="/img/logo-laboratoria.png" id="logo">
+      <center>
+      <img src="img/logo-laboratoria.png" id="logo">
+      </center>
     </header>
     <section>
       <main id="Bienvenida">
-        <p>Bienvenida Alejandra</p>
-        <img src="https://raw.githubusercontent.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/master/src/img/ale.jpg" id="userPhoto">
-
+        <center>
+        <h2>Bienvenida Alejandra</h2>
+        <img src="https://raw.githubusercontent.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/master/src/img/ale.JPG" id="userPhoto">
+        <hr>
         <select name="cohorts">
            <option selected value="0"> Selecciona un cohort </option>
                <optgroup label="Lima-Peru">
@@ -34,12 +37,25 @@
                <option value="2">2017-06</option>
            </optgroup>
         </select>
+        </center>
       </main>
       <figure id="Resultados">
+        <form class="" action="index.html" method="post">
+          <select name="Orden">
+            <option value="1">Alfabeticamente A-Z</option>
+            <option value="2">Progreso ascendente</option>
+            <option value="1">Progreso descendente</option>
+          </select>
+          <input type="text" name="" value="Ingresa lo que buscas">
+          <button type="button" name="button">Buscar</button>
+        </form>
         <p>Alumnas del cohort</p>
       </figure>
     </section>
     <footer>
+      <center>
+      <p>© Laboratoria 2018</p>
+      </center>
     </footer>
     <!--Prueba Data-->
     <!-- <div class="site-container">

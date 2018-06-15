@@ -4,7 +4,10 @@ header {
 footer {
   background-color: yellow;
 }
-
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 600;
+}
 #userPhoto {
   border-radius: 100%;
   border: solid 5px;
@@ -17,7 +20,9 @@ main {
   background-color: yellow;
   width: 20%;
   height: 100%;
-
+  margin: 0%;
+  margin-top: 1%;
+  padding-bottom: 22.5%;
 }
 
 section {
@@ -25,13 +30,23 @@ section {
 }
 
 figure {
+  margin: 0%;
+  margin-top: 1%;
   float: right;
-  width: 70%;
+  width: 75%;
   border: solid;
   display: block;
   height: 100%;
+  padding: 2%;
+  padding-bottom: 30%;
 }
-
+footer {
+  margin-top: 38.5%;
+  background-color: black;
+  color: white;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
  #logo {
    width: 25%;
    height: 25%;
