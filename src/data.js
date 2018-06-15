@@ -10,7 +10,7 @@
 // })
 
   const dataRequest = new XMLHttpRequest();
-  dataRequest.open('GET', "/data/cohorts/lim-2018-03-pre-core-pw/users.json");
+  dataRequest.open('GET', "../data/cohorts/lim-2018-03-pre-core-pw/users.json");
   dataRequest.onload = function () {
     if(dataRequest.status>=200 && dataRequest.status<400) {
       let data = JSON.parse(dataRequest.responseText);
