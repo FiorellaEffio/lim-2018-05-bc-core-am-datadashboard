@@ -11,6 +11,8 @@ desarrollar tu producto (Tip: entrevistas) y cuál fue tu proceso para definir
 el producto final a nivel de experiencia y de interfaz. Es importante que
 detalles:
 
+![Sin titulo](http://subirimagen.me/uploads/20180614234848.jpg)
+
 * Quiénes son los principales usuarios de producto.
 En Laboratoria, las Training Managers (TMs) hacen un gran trabajo al analizar la
 mayor cantidad de datos posibles respecto al progreso de las estudiantes para
@@ -39,8 +41,9 @@ y tomar decisiones mas rapidas y complejas en base a datos mas simples y sencill
 
 Debes hacer un _sketch_ (boceto) de tu solución usando papel y lápiz, tomarle
 una foto, subirla a tu repositorio y hacer mención del _sketch_ en tu `README.md`.
-![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/sketch1.jpg)
-![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/sketch2.jpg)
+
+![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/src/img/sketch1.jpg)
+![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/src/img/sketch2.jpg)
 
 #### 3) Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
