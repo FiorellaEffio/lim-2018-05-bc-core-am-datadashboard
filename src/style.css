@@ -16,13 +16,20 @@ main {
   float: left;
   background-color: yellow;
   width: 20%;
+  height: 100%;
 
+}
+
+section {
+  background-color: red;
 }
 
 figure {
   float: right;
   width: 70%;
   border: solid;
+  display: block;
+  height: 100%;
 }
 
  #logo {
