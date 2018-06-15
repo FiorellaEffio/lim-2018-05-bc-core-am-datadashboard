@@ -39,6 +39,8 @@ y tomar decisiones mas rapidas y complejas en base a datos mas simples y sencill
 
 Debes hacer un _sketch_ (boceto) de tu solución usando papel y lápiz, tomarle
 una foto, subirla a tu repositorio y hacer mención del _sketch_ en tu `README.md`.
+![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/sketch1.jpg)
+![Sin titulo](https://github.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/blob/master/sketch2.jpg)
 
 #### 3) Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 
