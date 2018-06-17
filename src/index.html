@@ -18,38 +18,19 @@
         <h2>Bienvenida Alejandra</h2>
         <img src="https://raw.githubusercontent.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/master/src/img/ale.JPG" id="userPhoto">
         <hr>
-        <select name="cohorts">
-           <option selected value="0"> Selecciona un cohort </option>
-               <optgroup label="Lima-Peru">
-               <option value="1">lim-2018-03-pre-core-pw</option>
-               <option value="2">2017-06</option>
-           </optgroup>
-           <optgroup label="Santiago-Chile">
-               <option value="1">2018-03</option>
-               <option value="2">2017-06</option>
-           </optgroup>
-           <optgroup label="Ciudad de Mexico">
-               <option value="1">2018-03</option>
-               <option value="2">2017-06</option>
-           </optgroup>
-           <optgroup label="Sao Paulo-Brasil">
-               <option value="1">2018-03</option>
-               <option value="2">2017-06</option>
-           </optgroup>
-        </select>
+        <select name="cohorts" id="cohortsOptions"></select>
         </center>
       </main>
       <figure id="Resultados">
         <form class="" action="index.html" method="post">
           <select name="Orden">
-            <option value="1">Alfabeticamente A-Z</option>
-            <option value="2">Progreso ascendente</option>
-            <option value="1">Progreso descendente</option>
+            <option>Alfabeticamente A-Z</option>
+            <option>Progreso ascendente</option>
+            <option>Progreso descendente</option>
           </select>
-          <input type="text" name="" value="Ingresa lo que buscas">
+          <input type="text" name="">
           <button type="button" name="button">Buscar</button>
         </form>
-        <p>Alumnas del cohort</p>
       </figure>
     </section>
     <footer>
@@ -57,17 +38,6 @@
       <p>© Laboratoria 2018</p>
       </center>
     </footer>
-    <!--Prueba Data-->
-    <!-- <div class="site-container">
-      <form id="search-form">
-        <input type="text" name="search-keyword" id="search-keyword" placeholder="e.g. Android" required>
-        <input id="submit-btn" type="submit" name="" value="Submit">
-      </form>
-    </div>
-    <div class="site-container">
-      <ul id="response-container"></ul>
-    </div> -->
-
     <script src="data.js" type="text/javascript"></script>
     <script src="main.js"></script>
   </body>
