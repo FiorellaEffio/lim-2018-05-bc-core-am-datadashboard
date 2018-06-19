@@ -9,28 +9,19 @@ function chargeData() {
 function bringData(jsonFile) {
   fetch(jsonFile).then((response)=>{
       return response.json();
-  }).then((answerJson)=>{
-    let users = [];
-    let cohorts = [];
-    let progress = [];
-    for (var i = 0; i < answerJson.length; i++) {
-      cohorts[i] = answerJson[i];
-    }
+  }).then((cohorts)=>{
     let jsonFile = '../data/cohorts/lim-2018-03-pre-core-pw/users.json';
     fetch(jsonFile).then((response) =>{
       return response.json();
-      }).then((answerJson)=>{
-        for (var i = 0; i < answerJson.length; i++) {
-          users[i] = answerJson[i];
-        }
+    }).then((users)=>{
         let jsonFile = '../data/cohorts/lim-2018-03-pre-core-pw/progress.json';
         fetch(jsonFile).then((response) =>{
           return response.json();
-        }).then((answerJson)=>{
-          for (var i = 0; i < answerJson.length; i++) {
-            progress[i] = answerJson[i];
-          }
-          printingList(users, cohorts);
+        }).then((progress)=>{
+          console.log(users);
+          console.log(cohorts);
+          console.log(progress);
+          // printingList(users, cohorts);
         });
       });
   });

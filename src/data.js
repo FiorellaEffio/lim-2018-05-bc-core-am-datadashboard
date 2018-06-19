@@ -5,19 +5,19 @@ window.computeUsersStats = (users, progress, courses) => {
 
   var myList = [];
   var usersWithStats = {
-    stats = {
+    stats : {
       percent: 0,//porcentaje total respecto a cursos totales del cohort
-      exercises = {
+      exercises : {
         total: 0,//total de ejercicios autocorregidos
         completed: 0,//autocorregidos completados
         percent: 0//porcentaje de ejercicios autocorregidos autocompletados
       },
-      reads = {
+      reads : {
         total:0,//total de lecturas presentes
         completed: 0, //lecturas completadas
         percent: 0 //porcentaje de lecturas
       },
-      quizzes = {
+      quizzes : {
         total: 0, //total quizzes presentes
         completed: 0, // quizzes autocompletados
         percent: 0, //porcentaje de quizzes completados
@@ -55,19 +55,19 @@ window.processCohortData = (options) => {
   // función debe invocar internamente a `computeUsersStats()`, `sortUsers()` y
   // `filterUsers()`.
   var options = {
-    cohort: ,//objeto cohort de la lista de cohorts
-    cohortData = {
+    cohort: 0,//objeto cohort de la lista de cohorts
+    cohortData : {
       users: [],
-      progress = {
+      progress : {
 
       }
     },
-    orderBy: ,//string del sortUsers
-    orderDirection: ,//string del sortUsers
-    search://string del filterUsers
+    orderBy: 0,//string del sortUsers
+    orderDirection: 0,//string del sortUsers
+    search:0//string del filterUsers
   }
   var myListOrderAndFiltered = {
-    stats: //ver computeUsersStats
+    stats: 0//ver computeUsersStats
   }
   return myListOrderAndFiltered;
 }
