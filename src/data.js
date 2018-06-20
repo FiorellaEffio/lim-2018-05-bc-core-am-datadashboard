@@ -1,28 +1,18 @@
 window.computeUsersStats = (users, progress, courses) => {
   var myList = [];
-  var usersWithStats = {
-    stats : {
-      percent: 0,//porcentaje total respecto a cursos totales del cohort
-      exercises : {
-        total: 0,//total de ejercicios autocorregidos
-        completed: 0,//autocorregidos completados
-        percent: 0//porcentaje de ejercicios autocorregidos autocompletados
-      },
-      reads : {
-        total:0,//total de lecturas presentes
-        completed: 0, //lecturas completadas
-        percent: 0 //porcentaje de lecturas
-      },
-      quizzes : {
-        total: 0, //total quizzes presentes
-        completed: 0, // quizzes autocompletados
-        percent: 0, //porcentaje de quizzes completados
-        scoreSum: 0, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: 0 //promedio de puntuaciones en quizzes completados
-      }
-    }
-  }
-  return myList;
+  users.forEach(function(element) {
+  var uid = element.id;
+  console.log(progress[uid]);
+  
+  });
+  // console.log(myList);
+  // myList.forEach(function(element) {
+  // console.log(element);
+  // let nameOfStudents = document.createElement('p');
+  // nameOfStudents.innerText = element.name;
+  // studentsOptions.appendChild(nameOfStudents);
+  // });
+  // return myList;
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {
@@ -57,8 +47,8 @@ window.processCohortData = (options) => {
   let usersFiltered = filterUsers(users, search);
   console.log(usersFiltered);
   // usersFilAndSort = sortUsers(usersFiltered, orderBy, orderDirection);
-  // myListOrderAndFiltered = computeUsersStats(usersFilAndSort, progress, courses);
-  // //pintar en pantalla
+  myListOrderAndFiltered = computeUsersStats(usersFiltered, progress, courses);
+  //pintar en pantalla
   // console.log(myListOrderAndFiltered);
   // return myListOrderAndFiltered;
 }
