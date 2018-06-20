@@ -1,7 +1,4 @@
 window.computeUsersStats = (users, progress, courses) => {
-  // Esta función es la responsable de "crear" la lista de usuarios (estudiantes) que vamos a "pintar" en la pantalla. La idea es "recorrer" el arreglo de usuarios (users) y calcular los indicadores necesarios de progreso para cada uno. La función debe devolver un nuevo arreglo de usuarios donde a cada objeto de usuario se le debe agregar una propiedad con el nombre stats con las estadísticas calculadas.
-  // progress: Objeto de progreso en bruto. Contiene una llave para cada usuario (uid) con un objeto que contiene el progreso del usuario para cada curso.
-  // courses: Arreglo de strings con los ids de los cursos del cohort en cuestión. Esta data se puede extraer de la propiedad coursesIndex de los objetos que representan los cohorts.
 
   var myList = [];
   var usersWithStats = {
@@ -50,36 +47,53 @@ window.filterUsers = (users, search) => {
 }
 
 window.processCohortData = (options) => {
-  // Esta función es la que deberíamos usar al seleccionar un cohort y cada vez que
-  // el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta
-  // función debe invocar internamente a `computeUsersStats()`, `sortUsers()` y
-  // `filterUsers()`.
-  var options = {
-    cohort: 0,//objeto cohort de la lista de cohorts
-    cohortData : {
-      users: [],
-      progress : {
-
-      }
-    },
-    orderBy: 0,//string del sortUsers
-    orderDirection: 0,//string del sortUsers
-    search:0//string del filterUsers
-  }
-  var myListOrderAndFiltered = {
-    stats: 0//ver computeUsersStats
-  }
-  return myListOrderAndFiltered;
+  //tambien es invocada cuando cambia los criterios de ordenado y filtrado en la interfaz.
+  fetch('../data/cohorts.json')
+  .then((response) => {return response.json();})
+  .then((cohorts) => {
+    fetch('../data/cohorts/lim-2018-03-pre-core-pw/users.json')
+    .then((response) => {return response.json();})
+    .then((users) => {
+      fetch('../data/cohorts/lim-2018-03-pre-core-pw/progress.json')
+      .then((response) => {return response.json();})
+      .then((progress)=> {
+        let selector = document.getElementById('cohortsOptions');
+        let cohort = selector.options[selector.selectedIndex].text;
+        let newUsers = [];
+        // for (let i=0; i<=users.length; i++) {
+        //   if(cohort === users[i].signupCohort ) {
+        //     newUsers.push(users[i]);
+        //
+        //   } else {
+        //     console.log(users[i].signupCohort);
+        //   }
+        // }
+        // console.log(newUsers);
+        var options = {
+          cohort: 0,//objeto cohort de la lista de cohorts
+          cohortData : {
+            users,//array en bruto users
+            progress//objeto en bruto progress
+          },
+          orderBy: '',//string del sortUsers
+          orderDirection: '',//string del sortUsers
+          search:''//string del filterUsers
+        }
+        console.log(options);
+      });
+            // courses: Arreglo de strings con los ids de los cursos del cohort en cuestión. Esta data se puede extraer de la propiedad coursesIndex de los objetos que representan los cohorts.
+            // printingList(users, cohorts);
+    });
+  });
+  // computeUsersStats();
+  // sortUsers();
+  // filterUsers();
+  // var myListOrderAndFiltered = {
+  //   stats: 0//ver computeUsersStats
+  // }
+  // return myListOrderAndFiltered;
 }
-
-            // 1. Permitir al usuario seleccionar un cohort de una lista de cohorts.
-            // 2. Al seleccionar un cohort:
-            //    - Listar las estudiantes de ese cohort
-            //    - Para cada estudiante:
-            //      + Calcular porcentaje de completitud de todos los _cursos_.
-            //      + Calcular grado de completitud de _lecturas_, _ejercicios autocorregidos_,
-            //        y _quizzes_.
-            //    - Ordenar estudiantes por completitud _general_ (porcentaje consumido/completado
-            //      de todos los cursos del cohort en cuestión), de _lecturas_, _ejercicios
-            //      autocorregidos_ y _quizzes_.
-            //    - Filtrar/buscar estudiantes por nombre.
+//- Para cada estudiante:
+//  + Calcular porcentaje de completitud de todos los _cursos_.
+//  + Calcular grado de completitud de _lecturas_, _ejercicios autocorregidos_,
+//    y _quizzes_.
