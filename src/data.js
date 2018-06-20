@@ -70,7 +70,7 @@ window.processCohortData = (options) => {
         // }
         // console.log(newUsers);
         var options = {
-          cohort: 0,//objeto cohort de la lista de cohorts
+          cohort: cohorts[selector.selectedIndex],//objeto cohort de la lista de cohorts
           cohortData : {
             users,//array en bruto users
             progress//objeto en bruto progress
