@@ -1,5 +1,4 @@
 window.computeUsersStats = (users, progress, courses) => {
-
   var myList = [];
   var usersWithStats = {
     stats : {
@@ -27,70 +26,40 @@ window.computeUsersStats = (users, progress, courses) => {
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-  // La función `sortUsers()` se encarga de _ordenar_ la lista de usuarios creada con
-  // `computeUsersStats()` en base a `orderBy` y `orderDirection`.
-  // * `users`: Arreglo de objetos creado con `computeUsersStats()`.
-  // * `orderBy`: String que indica el criterio de ordenado. Debe permitir ordenar
-  //   por nombre, porcentaje de completitud total, porcentaje de ejercicios
-  //   autocorregidos completados, porcentaje de quizzes completados, puntuación
-  //   promedio en quizzes completados, y porcentaje de lecturas completadas.
-  // * `orderDirection`: La dirección en la que queremos ordenar. Posibles valores:
-  //   `ASC` y `DESC` (ascendiente y descendiente).
   return myListByOrder;//arreglo de usuarios ordenados
-
 }
 
 window.filterUsers = (users, search) => {
-  // * `users`: Arreglo de objetos creado con `computeUsersStats()`.
-  // * `search`: String de búsqueda.
+  var myListFiltered = [];
+  users.forEach(function(element) {
+    if((element.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1) {
+      myListFiltered.push(element);
+    }
+  });
   return myListFiltered;//lista de usuarios con coincidencia en search
 }
 
 window.processCohortData = (options) => {
-  //tambien es invocada cuando cambia los criterios de ordenado y filtrado en la interfaz.
-  fetch('../data/cohorts.json')
-  .then((response) => {return response.json();})
-  .then((cohorts) => {
-    fetch('../data/cohorts/lim-2018-03-pre-core-pw/users.json')
-    .then((response) => {return response.json();})
-    .then((users) => {
-      fetch('../data/cohorts/lim-2018-03-pre-core-pw/progress.json')
-      .then((response) => {return response.json();})
-      .then((progress)=> {
-        let selector = document.getElementById('cohortsOptions');
-        let cohort = selector.options[selector.selectedIndex].text;
-        let newUsers = [];
-        // for (let i=0; i<=users.length; i++) {
-        //   if(cohort === users[i].signupCohort ) {
-        //     newUsers.push(users[i]);
-        //
-        //   } else {
-        //     console.log(users[i].signupCohort);
-        //   }
-        // }
-        // console.log(newUsers);
-        var options = {
-          cohort: cohorts[selector.selectedIndex],//objeto cohort de la lista de cohorts
-          cohortData : {
-            users,//array en bruto users
-            progress//objeto en bruto progress
-          },
-          orderBy: '',//string del sortUsers
-          orderDirection: '',//string del sortUsers
-          search:''//string del filterUsers
-        }
-        console.log(options);
-      });
-            // courses: Arreglo de strings con los ids de los cursos del cohort en cuestión. Esta data se puede extraer de la propiedad coursesIndex de los objetos que representan los cohorts.
-            // printingList(users, cohorts);
-    });
-  });
-  // computeUsersStats();
-  // sortUsers();
-  // filterUsers();
-  // var myListOrderAndFiltered = {
-  //   stats: 0//ver computeUsersStats
+  let users = options.cohortData.users;
+  let cohort = options.cohort;
+  let progress = options.cohortData.progress;
+  let orderBy = options.orderBy;
+  let orderDirection = options.orderDirection;
+  let search = options.search;
+  let courses = options.cohortData.coursesIndex;
+  // for (let i=0; i<=users.length; i++) {
+  //    if(cohort.id === users[i].signupCohort ) {
+  //      users.push(users[i]);
+  //    } else {
+  //      console.log(users[i].signupCohort);
+  //    }
   // }
+  let usersFiltered = filterUsers(users, search);
+  console.log(usersFiltered);
+  // usersFilAndSort = sortUsers(usersFiltered, orderBy, orderDirection);
+  // myListOrderAndFiltered = computeUsersStats(usersFilAndSort, progress, courses);
+  // //pintar en pantalla
+  // console.log(myListOrderAndFiltered);
   // return myListOrderAndFiltered;
 }
 //- Para cada estudiante:

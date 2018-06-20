@@ -24,13 +24,19 @@
       </main>
       <figure id="Resultados">
         <form class="" action="index.html" method="post">
-          <select name="Orden">
-            <option>Alfabeticamente A-Z</option>
-            <option>Progreso ascendente</option>
-            <option>Progreso descendente</option>
+          <select id="orderBy">
+            <option>Nombre</option>
+            <option>Porcentaje Completitud Total</option>
+            <option>Porcentaje ejercicios completos</option>
+            <option>Porcentaje Quizzes completos</option>
+            <option>Puntuacion promedio en quizzes</option>
+            <option>Porcentaje de lecturas completadas</option>
           </select>
-          <input type="text" name="">
-          <button type="button" name="button">Buscar</button>
+          <select id="orderDirection">
+            <option>ASC</option>
+            <option>DESC</option>
+          </select>
+          <input type="text" name="" id="searchText">
         </form>
         <div id="studentsOptions">
 
