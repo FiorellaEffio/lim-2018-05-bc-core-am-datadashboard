@@ -2,34 +2,53 @@ window.computeUsersStats = (users, progress, courses) => {
   var myList = [];
   users.forEach(function(element) {
   var uid = element.id;
+  console.log(uid);
   var progressUser = progress[uid];
+  console.log(progressUser);
+  var percentTotal = 0;
+  var exercisesTotal = 0;
+  var exercisesCompleted = 0;
+  var exercisesPercent = 0;
+  var readsTotal = 0;
+  var readsCompleted = 0;
+  var readsPercent = 0;
+  var quizzesTotal = 0;
+  var quizzesCompleted = 0;
+  var quizzesPercent = 0;
+  var quizzesScoreSum = 0;
+  var quizzesScoreAvg = 0;
+  courses.forEach(function(element) {
+    percentTotal += progressUser[element].percent;
+    console.log(percentTotal);
+  })
   //Por ahora solo hay un curso
   var usersWithStats = {
     stats : {
       name : element.name,
-      percent: progressUser.intro.percent,//porcentaje total respecto a cursos totales del cohort
+      percent: percentTotal,//porcentaje total respecto a cursos totales del cohort
       exercises : {
-        total: 0,//total de ejercicios autocorregidos
-        completed: 0,//autocorregidos completados
-        percent: 0//porcentaje de ejercicios autocorregidos autocompletados
+        total: exercisesTotal,//total de ejercicios autocorregidos
+        completed: exercisesCompleted,//autocorregidos completados
+        percent: exercisesPercent//porcentaje de ejercicios autocorregidos autocompletados
       },
       reads : {
-        total:0,//total de lecturas presentes
-        completed: 0, //lecturas completadas
-        percent: 0 //porcentaje de lecturas
+        total: readsTotal,//total de lecturas presentes
+        completed: readsCompleted, //lecturas completadas
+        percent: readsPercent //porcentaje de lecturas
       },
       quizzes : {
-        total: 0, //total quizzes presentes
-        completed: 0, // quizzes autocompletados
-        percent: 0, //porcentaje de quizzes completados
-        scoreSum: 0, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: 0 //promedio de puntuaciones en quizzes completados
+        total: quizzesTotal, //total quizzes presentes
+        completed: quizzesCompleted, // quizzes autocompletados
+        percent: quizzesPercent, //porcentaje de quizzes completados
+        scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
+        scoreAvg: quizzesScoreAvg //promedio de puntuaciones en quizzes completados
       }
     }
   }
   myList.push(usersWithStats);
   });
   console.log(myList);
+  document.getElementById("studentsOptions").innerHTML="";
   myList.forEach(function(element) {
   let nameOfStudents = document.createElement('p');
   nameOfStudents.innerText = element.stats.name + " " + element.stats.percent;
@@ -90,8 +109,9 @@ window.processCohortData = (options) => {
   let search = options.search;
   let courses = options.cohortData.coursesIndex;
   let usersFiltered = filterUsers(users, search);
-  console.log(usersFiltered);
-  let usersFilAndSort = sortUsers(usersFiltered, orderBy, orderDirection);
-  myListOrderAndFiltered = computeUsersStats(usersFilAndSort, progress, courses);
-  return myListOrderAndFiltered;
+  let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
+  console.log(usersWithStatus);
+  // let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
+  // myListOrderAndFiltered;
+  // return myListOrderAndFiltered;
 }
