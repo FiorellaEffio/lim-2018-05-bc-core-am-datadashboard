@@ -8,7 +8,7 @@ información y controles más relevantes.
 
 ## Demo
 
-Ingresa a la aplicación dando click aqui -> 
+Ingresa a la aplicación dando click aqui ->
 ![Demo](img/demo-datadashboard.gif)
 
 ### User Experience Design (¿Como lo pensamos?)
@@ -24,7 +24,7 @@ Realizamos una entrevista a la Training Manager de Lima (Alejandra) y ademas tom
 En base a las entrevistas realizadas desarrollamos nuestro primer prototipo de baja fidelidad con los minimos requerimientos del proyecto
 ![Sin titulo](img/baja-fidelidad.jpg)
 
-Asimismo diseñamos en figma nuestro prototipo de alta fidelidad ya con todas las pautas que recibimos en las entrevistas
+Asimismo diseñamos en Axure RP 8 nuestro prototipo de alta fidelidad ya con todas las pautas que recibimos en las entrevistas
 ![Sin titulo](img/alta-fidelidad.jpg)
 
 ### 2) Implementación de la Interfaz de Usuario (HTML/CSS/JS) (¿Como lo implementamos?)
