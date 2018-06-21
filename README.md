@@ -27,4 +27,4 @@ En base a las entrevistas realizadas desarrollamos nuestro primer prototipo de b
 ![Sin titulo](img/baja-fidelidad.jpg)
 
 Asimismo diseñamos en Axure RP 8 nuestro prototipo de alta fidelidad ya con todas las pautas que recibimos en las entrevistas
-![Sin titulo](img/alta-fidelidad.jpg)
+![Sin titulo](img/altafidelidad.jpg)
