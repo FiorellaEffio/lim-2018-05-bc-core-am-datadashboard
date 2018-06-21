@@ -32,13 +32,42 @@ window.computeUsersStats = (users, progress, courses) => {
   console.log(myList);
   myList.forEach(function(element) {
   let nameOfStudents = document.createElement('p');
-  nameOfStudents.innerText = element.stats.name;
+  nameOfStudents.innerText = element.stats.name + " " + element.stats.percent;
   studentsOptions.appendChild(nameOfStudents);
   });
   return myList;
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {
+  var myListByOrder = [];
+  if(orderBy === "Porcentaje Completitud Total") {
+  let emptyUsers = users;//al ultimo queda un array vacio
+  let k = 0;
+  let result;
+    for(var i = 0;i<users.length; i++) {
+      for(var j = 0 ; j < emptyUsers.length-1; j++) {
+        k = j+1;
+        console.log(users);
+        if(users[j].stats.percent>=users[k].stats.percent) {
+          result = j;
+        } else {
+          result = k;
+        }
+      }
+      myListByOrder.push(emptyUsers[result]);
+      console.log(myListByOrder);
+      emptyUsers.splice(result,1);
+      console.log(emptyUsers);
+    }
+  }
+  console.log(myListByOrder);
+  // if(orderBy === "") {}
+  // if(orderBy === "") {}
+  // if(orderBy === "") {}
+
+  if (orderDirection === "ASC") {
+    myListByOrder = myListByOrder.reverse();
+  }
   return myListByOrder;//arreglo de usuarios ordenados
 }
 
@@ -60,16 +89,9 @@ window.processCohortData = (options) => {
   let orderDirection = options.orderDirection;
   let search = options.search;
   let courses = options.cohortData.coursesIndex;
-  // for (let i=0; i<=users.length; i++) {
-  //    if(cohort.id === users[i].signupCohort ) {
-  //      users.push(users[i]);
-  //    } else {
-  //      console.log(users[i].signupCohort);
-  //    }
-  // }
   let usersFiltered = filterUsers(users, search);
   console.log(usersFiltered);
-  // usersFilAndSort = sortUsers(usersFiltered, orderBy, orderDirection);
-  myListOrderAndFiltered = computeUsersStats(usersFiltered, progress, courses);
+  let usersFilAndSort = sortUsers(usersFiltered, orderBy, orderDirection);
+  myListOrderAndFiltered = computeUsersStats(usersFilAndSort, progress, courses);
   return myListOrderAndFiltered;
 }

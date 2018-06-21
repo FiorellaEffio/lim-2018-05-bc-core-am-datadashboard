@@ -1,5 +1,5 @@
 //Mostrar los cohorts en lista para que el usuario seleccione
-fetch('../data/cohorts.json')
+fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
 .then((response) => {return response.json();})
 .then((cohorts) => {
   cohorts.forEach(function(element) {
@@ -14,18 +14,21 @@ chargeAll.addEventListener("click", beginApp);
 //funcion para convertir propiedades del objeto en array
 // object.hasOwnProperty to know if exists the property
 function beginApp() {
-  fetch('../data/cohorts.json')
+  fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
   .then((response) => {return response.json();})
   .then((cohorts) => {
-    fetch('../data/cohorts/lim-2018-03-pre-core-pw/users.json')
+    //selector
+    let selector = document.getElementById('cohortsOptions');
+    let cohortName = selector.options[selector.selectedIndex].text;
+    let jsonFile = "https://laboratoria-la-staging.firebaseapp.com/cohorts/" + cohortName + "/users";
+    console.log(jsonFile);
+    fetch(jsonFile)
     .then((response) => {return response.json();})
     .then((users) => {
-      fetch('../data/cohorts/lim-2018-03-pre-core-pw/progress.json')
+      jsonFile = "https://laboratoria-la-staging.firebaseapp.com/cohorts/"+ cohortName +"/progress";
+      fetch(jsonFile)
       .then((response) => {return response.json();})
       .then((progress)=> {
-        //selector
-        let selector = document.getElementById('cohortsOptions');
-        let cohortName = selector.options[selector.selectedIndex].text;
         //ordenar por tema
         let ordenar1 = document.getElementById('orderBy');
         let orderBy = ordenar1.options[ordenar1.selectedIndex].text;
