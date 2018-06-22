@@ -9,8 +9,8 @@ información y controles más relevantes.
 
 ## Demo
 
-Ingresa a la aplicación dando click aqui ->
-![Demo](img/demo-datadashboard.gif)
+Ingresa a la aplicación dando click aqui -> https://fiorellaeffio.github.io/lim-2018-05-bc-core-am-datadashboard/src/index.html
+<!-- ![Demo](img/demo-datadashboard.gif) -->
 
 ### User Experience Design (¿Como lo pensamos?)
 
@@ -21,7 +21,7 @@ Usando trello podemos ver como dividimos nuestro proyecto.
 ![Sin titulo](img/trello.jpg)
 
 Realizamos una entrevista a la Training Manager de Lima (Alejandra) y ademas tomamos en cuenta realizar entrevistas en cuanto a diseño a otros usuarios con el fin de tener una mejor vista del proyecto.
-![Sin titulo](img/entrevistas.jpg)
+![Sin titulo](img/entrevista-ale.png)
 
 En base a las entrevistas realizadas desarrollamos nuestro primer prototipo de baja fidelidad con los minimos requerimientos del proyecto
 ![Sin titulo](img/baja-fidelidad.jpg)
