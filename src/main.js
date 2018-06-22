@@ -1,16 +1,32 @@
 //Mostrar los cohorts en lista para que el usuario seleccione
-fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
-.then((response) => {return response.json();})
-.then((cohorts) => {
-  cohorts.forEach(function(element) {
-  let nameOfCohort = document.createElement('option');
-  nameOfCohort.innerText = element.id;
-  cohortsOptions.appendChild(nameOfCohort);
-  })
-});
+changeSede();
+document.getElementById('seleccionaSede').addEventListener("onchange", changeSede);
+function changeSede() {
+  fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
+  .then((response) => {return response.json();})
+  .then((cohorts) => {
+    let selectorSede = document.getElementById('seleccionaSede');
+    let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
+    cohortByCampus = [];
+    cohorts.forEach(function(element) {
+      if((element.id).indexOf(sedeName) !== -1) {
+        cohortByCampus.push(element);
+      }
+    });
+    document.getElementById("cohortsOptions").innerHTML = "";
+    cohortByCampus.forEach(function(element) {
+    let nameOfCohort = document.createElement('option');
+    nameOfCohort.innerText = element.id;
+    cohortsOptions.appendChild(nameOfCohort);
+    })
+  });
+}
+
 //Evento para el boton una vez que el usuario seleccione cohort
 var chargeAll = document.getElementById('buttonCharge');
 chargeAll.addEventListener("click", beginApp);
+var chargeSearch = document.getElementById('buttonSearch');
+chargeSearch.addEventListener("click", beginApp);
 //funcion para convertir propiedades del objeto en array
 // object.hasOwnProperty to know if exists the property
 function beginApp() {
