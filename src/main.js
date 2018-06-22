@@ -2,7 +2,7 @@
 changeSede();
 document.getElementById('seleccionaSede').addEventListener("onchange", changeSede);
 function changeSede() {
-  fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
+  fetch('https://api.laboratoria.la/cohorts')
   .then((response) => {return response.json();})
   .then((cohorts) => {
     let selectorSede = document.getElementById('seleccionaSede');
@@ -30,18 +30,18 @@ chargeSearch.addEventListener("click", beginApp);
 //funcion para convertir propiedades del objeto en array
 // object.hasOwnProperty to know if exists the property
 function beginApp() {
-  fetch('https://laboratoria-la-staging.firebaseapp.com/cohorts')
+  fetch('https://api.laboratoria.la/cohorts')
   .then((response) => {return response.json();})
   .then((cohorts) => {
     //selector
     let selector = document.getElementById('cohortsOptions');
     let cohortName = selector.options[selector.selectedIndex].text;
-    let jsonFile = "https://laboratoria-la-staging.firebaseapp.com/cohorts/" + cohortName + "/users";
+    let jsonFile = "https://api.laboratoria.la/cohorts/" + cohortName + "/users";
     console.log(jsonFile);
     fetch(jsonFile)
     .then((response) => {return response.json();})
     .then((users) => {
-      jsonFile = "https://laboratoria-la-staging.firebaseapp.com/cohorts/"+ cohortName +"/progress";
+      jsonFile = "https://api.laboratoria.la/cohorts/"+ cohortName +"/progress";
       fetch(jsonFile)
       .then((response) => {return response.json();})
       .then((progress)=> {
