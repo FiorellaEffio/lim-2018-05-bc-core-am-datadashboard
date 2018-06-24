@@ -1,30 +1,47 @@
 window.computeUsersStats = (users, progress, courses) => {
-  var myList = [];
-  users.forEach(function(element) {
-  var uid = element.id;
-  console.log(uid);
-  var progressUser = progress[uid];
-  console.log(progressUser);
-  var percentTotal = 0;
-  var exercisesTotal = 0;
-  var exercisesCompleted = 0;
-  var exercisesPercent = 0;
-  var readsTotal = 0;
-  var readsCompleted = 0;
-  var readsPercent = 0;
-  var quizzesTotal = 0;
-  var quizzesCompleted = 0;
-  var quizzesPercent = 0;
-  var quizzesScoreSum = 0;
-  var quizzesScoreAvg = 0;
-  courses.forEach(function(element) {
-    percentTotal += progressUser[element].percent;
+  let myList = [];
+  users.forEach(function(element1) {
+  console.log(element1);
+  let uid = element1.id;
+  let progressUser = progress[uid];
+  let percentTotal = 0;
+  let exercisesTotal = 0;
+  let exercisesCompleted = 0;
+  let exercisesPercent = 0;
+  let readsTotal = 0;
+  let readsCompleted = 0;
+  let readsPercent = 0;
+  let quizzesTotal = 0;
+  let quizzesCompleted = 0;
+  let quizzesPercent = 0;
+  let quizzesScoreSum = 0;
+  let quizzesScoreAvg = 0;
+  let count = 0;
+  count = 0;
+  let empty = Object.keys(progressUser).length;
+  if(empty !== 0)
+  {
+    courses.forEach(courseName => {
+      if(progressUser.hasOwnProperty(courseName)) {
+        if(progressUser[courseName].hasOwnProperty('percent')) {
+          percentTotal += progressUser[courseName].percent;
+        }
+        Object.values(progressUser[courseName].units).forEach(unit => {
+          let exercises = Object.values(unit.parts).filter(ejercicio => ejercicio.hasOwnProperty("exercises"));
+          exercises.forEach((parte) => {
+            exercisesTotal += Object.values(parte.exercises).length;
+          })
+        })
+      }
+    })
+
+    percentTotal = percentTotal/courses.length;
     console.log(percentTotal);
-  })
+  }
   //Por ahora solo hay un curso
-  var usersWithStats = {
+  let usersWithStats = {
     stats : {
-      name : element.name,
+      name : element1.name,
       percent: percentTotal,//porcentaje total respecto a cursos totales del cohort
       exercises : {
         total: exercisesTotal,//total de ejercicios autocorregidos
@@ -47,24 +64,17 @@ window.computeUsersStats = (users, progress, courses) => {
   }
   myList.push(usersWithStats);
   });
-  console.log(myList);
-  document.getElementById("studentsOptions").innerHTML="";
-  myList.forEach(function(element) {
-  let nameOfStudents = document.createElement('p');
-  nameOfStudents.innerText = element.stats.name + " " + element.stats.percent;
-  studentsOptions.appendChild(nameOfStudents);
-  });
   return myList;
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-  var myListByOrder = [];
+  let myListByOrder =users;
   if(orderBy === "Porcentaje Completitud Total") {
-  let emptyUsers = users;//al ultimo queda un array vacio
-  let k = 0;
-  let result;
-    for(var i = 0;i<users.length; i++) {
-      for(var j = 0 ; j < emptyUsers.length-1; j++) {
+    let emptyUsers = users;//al ultimo queda un array vacio
+    let k = 0;
+    let result;
+    for(let i = 0;i<users.length; i++) {
+      for(let j = 0 ; j < emptyUsers.length-1; j++) {
         k = j+1;
         console.log(users);
         if(users[j].stats.percent>=users[k].stats.percent) {
@@ -79,24 +89,23 @@ window.sortUsers = (users, orderBy, orderDirection) => {
       console.log(emptyUsers);
     }
   }
-  console.log(myListByOrder);
   // if(orderBy === "") {}
   // if(orderBy === "") {}
   // if(orderBy === "") {}
-
-  if (orderDirection === "ASC") {
+  if (orderDirection === "DESC") {
     myListByOrder = myListByOrder.reverse();
   }
+  document.getElementById("studentsOptions").innerHTML="";
+  myListByOrder.forEach(function(element) {
+  let nameOfStudents = document.createElement('p');
+  nameOfStudents.innerText = element.stats.name + "\t" + element.stats.percent + "%" + element.stats.exercises.total;
+  studentsOptions.appendChild(nameOfStudents);
+  });
   return myListByOrder;//arreglo de usuarios ordenados
 }
 
 window.filterUsers = (users, search) => {
-  var myListFiltered = [];
-  users.forEach(function(element) {
-    if((element.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1) {
-      myListFiltered.push(element);
-    }
-  });
+  let myListFiltered = users.filter(user => (user.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1);
   return myListFiltered;//lista de usuarios con coincidencia en search
 }
 
@@ -110,8 +119,6 @@ window.processCohortData = (options) => {
   let courses = options.cohortData.coursesIndex;
   let usersFiltered = filterUsers(users, search);
   let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
-  console.log(usersWithStatus);
-  // let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
-  // myListOrderAndFiltered;
-  // return myListOrderAndFiltered;
+  let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
+  return myListOrderAndFiltered;
 }

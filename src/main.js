@@ -7,12 +7,7 @@ function changeSede() {
   .then((cohorts) => {
     let selectorSede = document.getElementById('seleccionaSede');
     let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
-    cohortByCampus = [];
-    cohorts.forEach(function(element) {
-      if((element.id).indexOf(sedeName) !== -1) {
-        cohortByCampus.push(element);
-      }
-    });
+    let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
     document.getElementById("cohortsOptions").innerHTML = "";
     cohortByCampus.forEach(function(element) {
     let nameOfCohort = document.createElement('option');
@@ -21,7 +16,6 @@ function changeSede() {
     })
   });
 }
-
 //Evento para el boton una vez que el usuario seleccione cohort
 var chargeAll = document.getElementById('buttonCharge');
 chargeAll.addEventListener("click", beginApp);
@@ -37,7 +31,6 @@ function beginApp() {
     let selector = document.getElementById('cohortsOptions');
     let cohortName = selector.options[selector.selectedIndex].text;
     let jsonFile = "https://api.laboratoria.la/cohorts/" + cohortName + "/users";
-    console.log(jsonFile);
     fetch(jsonFile)
     .then((response) => {return response.json();})
     .then((users) => {
@@ -45,6 +38,9 @@ function beginApp() {
       fetch(jsonFile)
       .then((response) => {return response.json();})
       .then((progress)=> {
+        let selectorSede = document.getElementById('seleccionaSede');
+        let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
+        let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
         //ordenar por tema
         let ordenar1 = document.getElementById('orderBy');
         let orderBy = ordenar1.options[ordenar1.selectedIndex].text;
@@ -54,7 +50,7 @@ function beginApp() {
         //buscador
         let search = document.getElementById('searchText').value;
         var options = {
-          cohort: cohorts[selector.selectedIndex],
+          cohort: cohortByCampus[selector.selectedIndex],
           cohortData : {
             users,//array en bruto users
             progress,//objeto en bruto progress
@@ -64,7 +60,6 @@ function beginApp() {
           orderDirection,
           search
         }
-        console.log(options);
         processCohortData(options);
       });
     });
