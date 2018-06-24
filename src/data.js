@@ -69,11 +69,16 @@ window.computeUsersStats = (users, progress, courses) => {
 
 window.sortUsers = (users, orderBy, orderDirection) => {
   let myListByOrder =users;
-  // if(orderBy === "Nombre") {
-  //   myListByOrder.sort( function(a,b) {
-  //     return a.stats.name - b.stats.name;
-  //   });
-  // }
+  if(orderBy === "Nombre") {
+    myListByOrder.sort( function(a, b) {
+      var nameA=a.stats.name.toLowerCase(), nameB=b.stats.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+          return -1
+      if (nameA > nameB)
+          return 1
+      return 0 //default return value (no sorting)
+    });
+  }
   if(orderBy === "Porcentaje Completitud Total") {
     myListByOrder.sort( function(a,b) {
       return a.stats.percent - b.stats.percent;
