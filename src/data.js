@@ -69,29 +69,36 @@ window.computeUsersStats = (users, progress, courses) => {
 
 window.sortUsers = (users, orderBy, orderDirection) => {
   let myListByOrder =users;
+  // if(orderBy === "Nombre") {
+  //   myListByOrder.sort( function(a,b) {
+  //     return a.stats.name - b.stats.name;
+  //   });
+  // }
   if(orderBy === "Porcentaje Completitud Total") {
-    let emptyUsers = users;//al ultimo queda un array vacio
-    let k = 0;
-    let result;
-    for(let i = 0;i<users.length; i++) {
-      for(let j = 0 ; j < emptyUsers.length-1; j++) {
-        k = j+1;
-        console.log(users);
-        if(users[j].stats.percent>=users[k].stats.percent) {
-          result = j;
-        } else {
-          result = k;
-        }
-      }
-      myListByOrder.push(emptyUsers[result]);
-      console.log(myListByOrder);
-      emptyUsers.splice(result,1);
-      console.log(emptyUsers);
-    }
+    myListByOrder.sort( function(a,b) {
+      return a.stats.percent - b.stats.percent;
+    });
   }
-  // if(orderBy === "") {}
-  // if(orderBy === "") {}
-  // if(orderBy === "") {}
+  if(orderBy === "Porcentaje ejercicios completos") {
+    myListByOrder.sort( function(a,b) {
+      return a.stats.percent - b.stats.percent;
+    });
+  }
+  if(orderBy === "Porcentaje Quizzes completos") {
+    myListByOrder.sort( function(a,b) {
+      return a.stats.quizzes.total - b.stats.quizzes.total;
+    });
+  }
+  if(orderBy === "Puntuacion promedio en quizzes") {
+    myListByOrder.sort( function(a,b) {
+      return a.stats.quizzes.scoreAvg - b.stats.quizzes.scoreAvg;
+    });
+  }
+  if(orderBy === "Porcentaje de lecturas completadas") {
+    myListByOrder.sort( function(a,b) {
+      return a.stats.reads.completed - b.stats.reads.completed;
+    });
+  }
   if (orderDirection === "DESC") {
     myListByOrder = myListByOrder.reverse();
   }
