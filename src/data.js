@@ -119,6 +119,9 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     myListByOrder = myListByOrder.reverse();
   }
   document.getElementById("studentsOptions").innerHTML="";
+  document.getElementById("studentsOptions").innerHTML="<tr><td>Nombre</td><td>Porcentaje</td><td>Ejercicios</td><td>Quizzes</td><td>Lecturas</td></tr>";
+
+  studentsOptions.appendChild(document.createElement('tr'));
   let count = 1;
   console.log("div"+count)
   myListByOrder.forEach(function(element) {
