@@ -25,16 +25,27 @@ window.computeUsersStats = (users, progress, courses) => {
       if(progressUser.hasOwnProperty(courseName)) {
         if(progressUser[courseName].hasOwnProperty('percent')) {
           percentTotal += progressUser[courseName].percent;
-        }
-        Object.values(progressUser[courseName].units).forEach(unit => {
-          let exercises = Object.values(unit.parts).filter(ejercicio => ejercicio.hasOwnProperty("exercises"));
-          exercises.forEach((parte) => {
-            exercisesTotal += Object.values(parte.exercises).length;
+          let progressUserByCourse = progressUser[courseName];
+          console.log(Object.values(progressUserByCourse.units));
+          Object.values(progressUserByCourse.units).forEach(unit => {
+            let exercises = Object.values(unit.parts);
+            console.log(exercises);
+            exercises.forEach((parte) => {
+              console.log(parte.type);
+              if(parte.type === "read") {
+                readsCompleted += parte.completed;
+              }
+              if(parte.type === "quiz") {
+                quizzesCompleted += parte.completed;
+              }
+              if(parte.type === "practice") {
+                exercisesCompleted += parte.completed;
+              }
+            })
           })
-        })
+        }
       }
     })
-
     percentTotal = percentTotal/courses.length;
     console.log(percentTotal);
   }
@@ -108,10 +119,28 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     myListByOrder = myListByOrder.reverse();
   }
   document.getElementById("studentsOptions").innerHTML="";
+  let count = 1;
+  console.log("div"+count)
   myListByOrder.forEach(function(element) {
-  let nameOfStudents = document.createElement('p');
-  nameOfStudents.innerText = element.stats.name + "\t" + element.stats.percent + "%" + element.stats.exercises.total;
+  let fileStudent = document.createElement('tr');
+  fileStudent.setAttribute("id", "student" + count);
+  let nameOfStudents = document.createElement('td');
+  nameOfStudents.innerText = element.stats.name;
+  let percentStudent = document.createElement('td');
+  percentStudent.innerText = element.stats.percent;
+  let exercisesStudent = document.createElement('td');
+  exercisesStudent.innerText = element.stats.exercises.completed
+  let quizzesStudent = document.createElement('td');
+  quizzesStudent.innerText = element.stats.quizzes.completed;
+  let readsStudent = document.createElement('td');
+  readsStudent.innerText = element.stats.reads.completed;
   studentsOptions.appendChild(nameOfStudents);
+  studentsOptions.appendChild(percentStudent);
+  studentsOptions.appendChild(exercisesStudent);
+  studentsOptions.appendChild(quizzesStudent);
+  studentsOptions.appendChild(readsStudent);
+  count++;
+  studentsOptions.appendChild(document.createElement('tr'));
   });
   return myListByOrder;//arreglo de usuarios ordenados
 }
