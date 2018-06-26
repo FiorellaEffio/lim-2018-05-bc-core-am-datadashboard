@@ -67,19 +67,19 @@ const computeUsersStats = (users, progress, courses) => {
       exercises : {
         total: exercisesTotal,//total de ejercicios autocorregidos
         completed: exercisesCompleted,//autocorregidos completados
-        percent: parseInt((exercisesCompleted/exercisesTotal*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
+        percent: parseInt((validator(exercisesCompleted,exercisesTotal)*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
       },
       reads : {
         total: readsTotal,//total de lecturas presentes
         completed: readsCompleted, //lecturas completadas
-        percent: parseInt((readsCompleted/readsTotal*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
+        percent: parseInt((validator(readsCompleted,readsTotal)*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
       },
       quizzes : {
         total: quizzesTotal, //total quizzes presentes
         completed: quizzesCompleted, // quizzes autocompletados
-        percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
+        percent: parseInt((validator(quizzesCompleted,quizzesTotal)*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
         scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: parseInt((quizzesScoreSum/quizzesCompleted).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
+        scoreAvg: parseInt((validator(quizzesScoreSum,quizzesCompleted)).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
       }
     }
   }
@@ -117,7 +117,7 @@ const sortUsers = (users, orderBy, orderDirection) => {
   }
   if(orderBy === "Puntuacion promedio en quizzes") {
     myListByOrder.sort( function(a,b) {
-      return a.stats.quizzes.scoreSum - b.stats.quizzes.scoreSum;
+      return a.stats.quizzes.scoreAvg - b.stats.quizzes.scoreAvg;
     });
   }
   if(orderBy === "Porcentaje de lecturas completadas") {
@@ -150,7 +150,7 @@ const sortUsers = (users, orderBy, orderDirection) => {
   let readsStudent = document.createElement('td');
   readsStudent.innerText = element.stats.reads.completed + " de " +element.stats.reads.total;
   let quizzesPromStudent = document.createElement('td');
-  quizzesPromStudent.innerText = element.stats.quizzes.scoreSum;
+  quizzesPromStudent.innerText = element.stats.quizzes.scoreAvg;
   studentsOptions.appendChild(nameOfStudents);
   studentsOptions.appendChild(percentStudent);
   studentsOptions.appendChild(exercisesStudent);

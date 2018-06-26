@@ -74,8 +74,13 @@ describe('data', () => {
   });
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
+    // const cohort = window.fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    // // const courses = Object.keys(cohort.coursesIndex);
+    // const { users, progress } = window.fixtures;
 
-    it('debería retornar arreglo de usuarios ordenado por nombre ASC');
+    // it('debería retornar arreglo de usuarios ordenado por nombre ASC', () => {
+    //   assert.deepEqual(window.sortUsers(users, "Nombre", "ASC"), [])
+    // });
     it('debería retornar arreglo de usuarios ordenado por nombre DESC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');

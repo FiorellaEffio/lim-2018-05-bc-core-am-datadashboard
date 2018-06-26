@@ -69,10 +69,10 @@ function beginApp() {
   });
 }
 
-// function validator(a,b) {
-//   if(b=0 || typeof(b)!== "number") {
-//     return 0;
-//   } else {
-//     return Math.round((a/b)*100)/100;
-//   }
-// }
+function validator(a,b) {
+  if(parseInt(b)===0) {
+    return 0;
+  } else {
+    return parseInt(a/b);
+  }
+}
