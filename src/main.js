@@ -28,8 +28,12 @@ function beginApp() {
   .then((response) => {return response.json();})
   .then((cohorts) => {
     //selector
+    let selectorSede = document.getElementById('seleccionaSede');
+    let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
+    let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
     let selector = document.getElementById('cohortsOptions');
-    let cohortName = selector.options[selector.selectedIndex].text;
+    let cohortName = cohortByCampus[selector.selectedIndex].id;
+    console.log(cohortName);
     let jsonFile = "https://api.laboratoria.la/cohorts/" + cohortName + "/users";
     fetch(jsonFile)
     .then((response) => {return response.json();})
@@ -38,9 +42,6 @@ function beginApp() {
       fetch(jsonFile)
       .then((response) => {return response.json();})
       .then((progress)=> {
-        let selectorSede = document.getElementById('seleccionaSede');
-        let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
-        let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
         //ordenar por tema
         let ordenar1 = document.getElementById('orderBy');
         let orderBy = ordenar1.options[ordenar1.selectedIndex].text;
@@ -54,14 +55,23 @@ function beginApp() {
           cohortData : {
             users,//array en bruto users
             progress,//objeto en bruto progress
-            coursesIndex : Object.keys(cohorts[selector.selectedIndex].coursesIndex)//arreglo
+            coursesIndex : Object.keys(cohortByCampus[selector.selectedIndex].coursesIndex)//arreglo
           },
           orderBy,
           orderDirection,
           search
         }
+        console.log(cohortByCampus[selector.selectedIndex].coursesIndex);
         processCohortData(options);
       });
     });
   });
+}
+
+function validator(a,b) {
+  if(b=0 || typeof(b)!== "number") {
+    return 0;
+  } else {
+    return Math.round((a/b)*100)/100;
+  }
 }
