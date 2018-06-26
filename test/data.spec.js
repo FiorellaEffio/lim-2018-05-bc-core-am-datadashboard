@@ -1,44 +1,42 @@
 describe('data', () => {
 
   it('debería exponer función computeUsersStats en objeto global', () => {
-    assert.isFunction(computeUsersStats);
+    assert.isFunction(window.computeUsersStats);
   });
 
   it('debería exponer función sortUsers en objeto global', () => {
-    assert.isFunction(sortUsers);
+    assert.isFunction(window.sortUsers);
   });
 
   it('debería exponer función filterUsers en objeto global', () => {
-    assert.isFunction(filterUsers);
+    assert.isFunction(window.filterUsers);
   });
 
   it('debería exponer función processCohortData en objeto global', () => {
-    assert.isFunction(processCohortData);
+    assert.isFunction(window.processCohortData);
   });
 
   describe('computeUsersStats(users, progress, courses)', () => {
 
-    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const cohort = window.fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
     const courses = Object.keys(cohort.coursesIndex);
-    const { users, progress } = fixtures;
+    const { users, progress } = window.fixtures;
 
     it('debería retornar arreglo de usuarios con propiedad stats', () => {
-      const processed = computeUsersStats(users, progress, courses);
-
+      const processed = window.computeUsersStats(users, progress, courses);
       assert.equal(users.length, processed.length);
-
       processed.forEach(user => {
-        assert.ok(user.hasOwnProperty('stats'));
-        assert.isNumber(user.stats.percent);
-        assert.isObject(user.stats.exercises);
-        assert.isObject(user.stats.quizzes);
-        assert.isObject(user.stats.reads);
+      assert.ok(user.hasOwnProperty('stats'));
+      assert.isNumber(user.stats.percent);
+      assert.isObject(user.stats.exercises);
+      assert.isObject(user.stats.quizzes);
+      assert.isObject(user.stats.reads);
       });
     });
 
     describe('user.stats para el primer usuario en data de prueba - ver carpeta data/', () => {
 
-      const processed = computeUsersStats(users, progress, courses);
+      const processed = window.computeUsersStats(users, progress, courses);
 
       it(
         'debería tener propiedad percent con valor 53',
@@ -58,6 +56,7 @@ describe('data', () => {
           total: 3,
           completed: 2,
           percent: 67,
+          scoreSum: 57,
           scoreAvg: 29,
         });
       });

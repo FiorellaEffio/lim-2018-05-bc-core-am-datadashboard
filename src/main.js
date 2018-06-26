@@ -12,6 +12,7 @@ function changeSede() {
     cohortByCampus.forEach(function(element) {
     let nameOfCohort = document.createElement('option');
     nameOfCohort.innerText = element.id;
+    let cohortsOptions = document.getElementById('cohortsOptions');
     cohortsOptions.appendChild(nameOfCohort);
     })
   });
@@ -33,7 +34,7 @@ function beginApp() {
     let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
     let selector = document.getElementById('cohortsOptions');
     let cohortName = cohortByCampus[selector.selectedIndex].id;
-    console.log(cohortName);
+    // console.log(cohortName);
     let jsonFile = "https://api.laboratoria.la/cohorts/" + cohortName + "/users";
     fetch(jsonFile)
     .then((response) => {return response.json();})
@@ -61,17 +62,17 @@ function beginApp() {
           orderDirection,
           search
         }
-        console.log(cohortByCampus[selector.selectedIndex].coursesIndex);
-        processCohortData(options);
+        // console.log(cohortByCampus[selector.selectedIndex].coursesIndex);
+        window.processCohortData(options);
       });
     });
   });
 }
 
-function validator(a,b) {
-  if(b=0 || typeof(b)!== "number") {
-    return 0;
-  } else {
-    return Math.round((a/b)*100)/100;
-  }
-}
+// function validator(a,b) {
+//   if(b=0 || typeof(b)!== "number") {
+//     return 0;
+//   } else {
+//     return Math.round((a/b)*100)/100;
+//   }
+// }

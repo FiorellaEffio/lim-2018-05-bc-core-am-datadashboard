@@ -1,19 +1,9 @@
-window.processCohortData = (options) => {
-  let users = options.cohortData.users;
-  // let cohort = options.cohort;
-  let progress = options.cohortData.progress;
-  let orderBy = options.orderBy;
-  let orderDirection = options.orderDirection;
-  let search = options.search;
-  let courses = options.cohortData.coursesIndex;
-  // console.log(courses);
-  let usersFiltered = filterUsers(users, search);
-  let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
-  let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
-  return myListOrderAndFiltered;
+const filterUsers = (users, search) => {
+  let myListFiltered = users.filter(user => (user.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1);
+  return myListFiltered;//lista de usuarios con coincidencia en search
 }
 
-window.computeUsersStats = (users, progress, courses) => {
+const computeUsersStats = (users, progress, courses) => {
   let myList = [];
   users.forEach(function(element1) {
   // console.log(element1);
@@ -53,8 +43,12 @@ window.computeUsersStats = (users, progress, courses) => {
                 }
               }
               if(part.type === "practice") {
-                exercisesCompleted += part.completed;
-                exercisesTotal++;
+                if(part.hasOwnProperty('exercises')) {
+                  Object.values(part.exercises).forEach(ejercicio => {
+                      exercisesCompleted += ejercicio.completed;
+                      exercisesTotal++;
+                  })
+                }
               }
             })
           })
@@ -73,19 +67,19 @@ window.computeUsersStats = (users, progress, courses) => {
       exercises : {
         total: exercisesTotal,//total de ejercicios autocorregidos
         completed: exercisesCompleted,//autocorregidos completados
-        percent: 0//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
+        percent: parseInt((exercisesCompleted/exercisesTotal*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
       },
       reads : {
         total: readsTotal,//total de lecturas presentes
         completed: readsCompleted, //lecturas completadas
-        percent: 0//validator(readsCompleted, readsTotal)porcentaje de lecturas
+        percent: parseInt((readsCompleted/readsTotal*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
       },
       quizzes : {
         total: quizzesTotal, //total quizzes presentes
         completed: quizzesCompleted, // quizzes autocompletados
-        percent: 0,//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
+        percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
         scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: 0//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
+        scoreAvg: parseInt((quizzesScoreSum/quizzesCompleted).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
       }
     }
   }
@@ -94,7 +88,7 @@ window.computeUsersStats = (users, progress, courses) => {
   return myList;
 }
 
-window.sortUsers = (users, orderBy, orderDirection) => {
+const sortUsers = (users, orderBy, orderDirection) => {
   let myListByOrder =users;
   if(orderBy === "Nombre") {
     myListByOrder.sort( function(a, b) {
@@ -134,8 +128,10 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   if (orderDirection === "DESC") {
     myListByOrder = myListByOrder.reverse();
   }
-  document.getElementById("studentsOptions").innerHTML="";
-  document.getElementById("studentsOptions").innerHTML="<tr><td>Nombre</td><td>Porcentaje</td><td>Ejercicios</td><td>Quizzes</td><td>Lecturas</td><td>Prom Quiz</td></tr>";
+
+  let studentsOptions = document.getElementById("studentsOptions");
+  studentsOptions.innerHTML="";
+  studentsOptions.innerHTML="<tr><td>Nombre</td><td>Porcentaje</td><td>Ejercicios</td><td>Quizzes</td><td>Lecturas</td><td>Prom Quiz</td></tr>";
 
   studentsOptions.appendChild(document.createElement('tr'));
   let count = 1;
@@ -167,7 +163,22 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   return myListByOrder;//arreglo de usuarios ordenados
 }
 
-window.filterUsers = (users, search) => {
-  let myListFiltered = users.filter(user => (user.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1);
-  return myListFiltered;//lista de usuarios con coincidencia en search
+const processCohortData = (options) => {
+  let users = options.cohortData.users;
+  // let cohort = options.cohort;
+  let progress = options.cohortData.progress;
+  let orderBy = options.orderBy;
+  let orderDirection = options.orderDirection;
+  let search = options.search;
+  let courses = options.cohortData.coursesIndex;
+  // console.log(courses);
+  let usersFiltered = filterUsers(users, search);
+  let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
+  let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
+  return myListOrderAndFiltered;
 }
+
+window.filterUsers = filterUsers;
+window.computeUsersStats = computeUsersStats;
+window.sortUsers = sortUsers;
+window.processCohortData = processCohortData;
