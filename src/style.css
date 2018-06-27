@@ -1,31 +1,185 @@
-header {
-  background-color: black;
-}
-footer {
-  background-color: yellow;
-}
-
-#userPhoto {
-  border-radius: 100%;
-  border: solid 5px;
-  width: 30%;
-  height: 30%;
-}
-
-main {
+/*----Style general de la estructura de la pagina principal----*/
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.06667em;
+  margin-left: -.04em;}
+h1{
+  /*background: pink; */
+  margin: 0em 0em 0em 10em;
+  text-align: center;
+  padding: 0.7em 0em 0em 0em;}
+.icon-login{
+/*  background:red;*/
+  height: 3em;
+  width: 11em;
+  margin: 1em 0em 0.5em 4.5em;
+  float:left;}
+header{
+  background: #ff0066;
+  padding:0em;
+  border-bottom:solid 2px  #aeaea6;
+  height: 5em;
+  width: auto;}
+.nav-wrapper{
   float: left;
-  background-color: yellow;
-  width: 20%;
-
-}
-
-figure {
-  float: right;
-  width: 70%;
-  border: solid;
-}
-
- #logo {
-   width: 25%;
-   height: 25%;
+  padding: 0.1em 0.1em 1.9em 0em;
+  background:#ffcc00;
+  margin: 0em 0em 0em 0em;
+  height: 40em;
+  width: 20em;
+/*  border-right:solid 2px  #aeaea6;*/
+  text-align: center;}
+.userProfile{
+  width: 53%;
+  height: 30%;
+  border-radius: 50%}
+#container{
+  /*background:rgb(39, 3, 39);*/
+  height:40em;
+  width: auto;
+  margin:0em 0em auto 20.2em;
+  padding: 2em 0em 0em 0em;
+  border-left: inset;
+  float: inline-start;}
+footer{
+  background: #ff0066;
+  height: 2em;
+  width: auto;
+  padding: 0.3em;
+  border-top: solid 2px  #aeaea6;
+  text-align-last: center;}
+/* --------------Stylo del menu de la pagina-----------------------*/
+#menu{
+  width: 230px;
+  height: auto;
+  font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+  margin: 38px auto;
+  text-align: center;}
+.item label{
+  display: block;
+  cursor:pointer;
+  background-color: #fff;
+  font-size: 15px;
+  padding: 13px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: #4b4a5e;/*color de la letra*/
+  border-bottom: solid 2px  #aeaea6;}
+.item label:hover{
+  color: #aeaea6;}
+.item ul{
+  margin: 0% 0% 0% 0%;
+  padding: 0% 0% 0% 0%;
+  width: 111%;
+  list-style: none;
+  overflow: hidden;
+  max-height: 0; /*desplazamienoto del sub menu*/
+  transition: all .4s linear;}
+.item ul li a{
+  border-radius: 4px;
+  width: 83%;
+  height: 12px;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  background-color: #e91fe9; /*color del submenu -rosado*/
+  color: #fff; /*color de letra*/
+  border-bottom:solid 2px #aeaea6;}
+.item ul li a:hover{
+  background-color: #e9e91f; /*efecto color del submenu-amarillo*/}
+.item input:checked ~ ul{
+  height: auto;
+  max-height: 65px;
+  transform:all;}
+.item input{
+  display: none;}
+/*------Aplicando Style al boton, lista desplegable y imput---*/
+  #submit-btn{
+    margin: 0em 0em 0em 13em;
+    padding: 0.3em;
+    width: 5em;
+    color:#000;
+    background: #ffcc00;}
+  .filtro{
+    margin: 0.2em 0em 0.2em 4em;
+    padding: 1px;
+    font-size: 14px;
+    background:#ffcc00;
+    border: 2px solid #eee
+    }
+  #orderBy{
+    margin: 0.5em;
+    width: 15em;
+    height: 2.1em;
+    border-color: #eee;
+    border: inset}
+  #search-keyword{
+    width: 15em;
+    height: 1.6em;
+    border-color: #eee;
+    border: inset;}
+  .cohorts{
+    font-size: 22px;
+  }
+/*-----------Aplicando stylos a las tablas-------------------*/
+/*Aplicando Reponsive Web Desing*/
+@media screen and (min-width:780px) and (max-width:1024px){
+body{background: purple;}
+*{margin: 0em;
+  padding: 0em;}
+  #submit-btn{
+  width:5.8em;
+  margin: 0em 0em 2em 1.8em;}
+  #search-keyword{
+  margin: 0em 0em 2em 0.1em;}
+  .filtro{
+   margin: 0em 0em 2em 2.5em;
+   padding:0.1em;}
+  #orderBy{
+  margin: 0em 0em 2em 0.5em;
+  width: 15.5em;}
  }
+@media screen and (min-width:480px) and (max-width:780px){
+*{margin: 0em;
+  padding: 0em;}
+body{background: red;}
+header{width: 56em;}
+footer{width: 55.4em;}
+#submit-btn{
+width:5.8em;
+margin: 0em 0em 0.5em 2.5em;}
+#search-keyword{
+margin: 0em 0em 1em 2.5em;}
+.filtro{
+margin: 0em 0em 0.5em 2.5em;
+float: left;
+padding:0.3em;}
+#orderBy{
+margin: 0em 0em 5em 2.7em;
+width: 15.5em;
+float: left;}
+}
+
+@media screen and (max-width:480px){
+*{margin: 0em;
+  padding: 0em;}
+body{background: green;}
+header{width: 65em;}
+footer{width: 64.4em;}
+#submit-btn{
+width: 6em;
+margin: 0em 0em 0.5em 2.5em;}
+#search-keyword{
+margin: 0em 0em 1em 2.5em;}
+.filtro{
+width: 5em;
+margin: 0em 0em 0.3em 2.5em;
+float: left;
+padding:0.2em;}
+#orderBy{
+margin: 0em 0em 1em 2.5em;
+width: 15.5em;
+float: left;}
+}
