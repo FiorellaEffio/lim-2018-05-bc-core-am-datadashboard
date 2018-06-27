@@ -69,10 +69,11 @@ function beginApp() {
   });
 }
 
-function validator(a,b) {
+const validator = (a,b) => {
   if(parseInt(b)===0) {
     return 0;
   } else {
     return parseInt(a/b);
   }
 }
+window.validator = validator;

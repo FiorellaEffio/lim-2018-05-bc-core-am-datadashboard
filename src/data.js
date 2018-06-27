@@ -67,19 +67,19 @@ const computeUsersStats = (users, progress, courses) => {
       exercises : {
         total: exercisesTotal,//total de ejercicios autocorregidos
         completed: exercisesCompleted,//autocorregidos completados
-        percent: parseInt((validator(exercisesCompleted,exercisesTotal)*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
+        percent: parseInt((window.validator(exercisesCompleted,exercisesTotal)*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
       },
       reads : {
         total: readsTotal,//total de lecturas presentes
         completed: readsCompleted, //lecturas completadas
-        percent: parseInt((validator(readsCompleted,readsTotal)*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
+        percent: parseInt((window.validator(readsCompleted,readsTotal)*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
       },
       quizzes : {
         total: quizzesTotal, //total quizzes presentes
         completed: quizzesCompleted, // quizzes autocompletados
-        percent: parseInt((validator(quizzesCompleted,quizzesTotal)*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
+        percent: parseInt((window.validator(quizzesCompleted,quizzesTotal)*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
         scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: parseInt((validator(quizzesScoreSum,quizzesCompleted)).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
+        scoreAvg: parseInt((window.validator(quizzesScoreSum,quizzesCompleted)).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
       }
     }
   }

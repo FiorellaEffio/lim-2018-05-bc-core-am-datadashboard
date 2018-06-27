@@ -5,16 +5,31 @@
     <meta name = "viewport" content = "width = device-width, user-scalable = no, initial-scale = 1.0">
     <title>Data Dashboard</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fontello.css">
   </head>
   <body>
     <header>
-      <center>
+      <input type="checkbox" id="btn-menu">
+      <label for="btn-menu"> <img src="img/icon-menu.png" id="icono-menu"> </label>
       <img src="img/logo-laboratoria.png" id="logo">
-      </center>
-    </header>
-    <section>
-      <main id="Bienvenida">
-        <center>
+      <nav class="menu">
+        <ul>
+          <li><a href="">Inicio</a></li>
+          <li><a href="">Ser</a></li>
+          <li><a href="">hjo</a></li>
+          <li><a href="">sa</a></li>
+          <li><a href="">fio</a></li>
+        </ul>
+      </nav>
+      <!-- <div class="contenedor">
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar" class="icon-menu"></label>
+        <nav class="menu">
+          <a href="">Inicio</a>
+          <a href="">Cohorts</a>
+          <a href="">Settings</a>
+          <a href="">Others</a>
+        </nav>
         <h2>Bienvenida Alejandra</h2>
         <img src="https://raw.githubusercontent.com/FiorellaEffio/lim-2018-05-bc-core-am-datadashboard/master/src/img/ale.JPG" id="userPhoto">
         <hr><br><br>
@@ -26,10 +41,13 @@
           <option value="cdmx">Ciudad de México</option>
           <option value="gdl">Guadalajara - México</option>
         </select>
-        <br><br>
         <label for="">Selecciona cohort</label>
         <select name="cohorts" id="cohortsOptions"></select>
-        <br><br>
+      </div> -->
+
+    </header>
+    <section>
+      <main id="Bienvenida">
         <label for="">Ordenar</label>
         <select id="orderBy">
           <option>Nombre</option>
@@ -42,9 +60,8 @@
         <select id="orderDirection">
           <option>ASC</option>
           <option>DESC</option>
-        </select><br><br>
+        </select>
         <button type="button" name="button" id="buttonCharge">Cargar data</button>
-        </center>
       </main>
       <figure id="Resultados">
         <form class="" action="index.html" method="post">
@@ -58,11 +75,6 @@
         </div>
       </figure>
     </section>
-    <footer>
-      <center>
-      <p>© Laboratoria 2018</p>
-      </center>
-    </footer>
     <script src="data.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
   </body>

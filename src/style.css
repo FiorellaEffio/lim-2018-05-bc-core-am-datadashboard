@@ -1,55 +1,95 @@
-header {
-  background-color: black;
-}
-footer {
-  background-color: yellow;
-}
-body {
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-weight: 600;
-}
 #userPhoto {
   border-radius: 100%;
   border: solid 5px;
-  width: 30%;
-  height: 30%;
-}
-
-main {
-  float: left;
-  background-color: yellow;
-  width: 30%;
-  height: 220px;
-  margin: 0%;
-  margin-top: 1%;
-  padding-bottom: 22.5%;
+  width: 10%;
+  height: 10%;
 }
 table,td {
 	border: 1px solid black;
 }
-section {
-  background-color: red;
+#logo {
+  width: 30%;
+  height: 30%;
+  float:right;
+}
+#icono-menu {
+  width: 30px;
+  height: 30px;
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(menu.css);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
 }
 
-figure {
-  margin: 0%;
-  margin-top: 1%;
-  float: right;
-  width: 65%;
-  border: solid;
+header {
+  width: 100%;
+  background: yellow;
+}
+
+#btn-menu {
+  display:none;
+}
+
+header label {
+  display: none;/*para que no se vea en pantallas grandes*/
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border-right: 1px solid #fff;
+}
+
+header label:hover {
+  cursor: pointer;
+  background: rgba(255,255,255,0.8);
+}
+
+.menu ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+
+}
+.menu li {
+  border-right: 1px solid #fff;
+}
+.menu li:hover {
+  cursor: pointer;
+  background: rgba(255,255,255,0.8);
+}
+.menu li a {
   display: block;
-  height: 70px;
-  padding: 2%;
-  padding-bottom: 30%;
+  padding: 15px 20px;/*para los cohorts*/
+  color: black;
+  text-decoration: none;
 }
-footer {
-  margin-top: 38.5%;
-  background-color: black;
-  color: white;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
+@media (max-width:480px) {
+  header label {
+    display:block;
+  }
+  #logo {
+    width: 20px;
+  }
+  .menu {
+    position: absolute;
+    background: yellow;
+    width: 70%;
+    margin-left: -70%;
+    transition: all 0.5s;
+  }
+  .menu img {
+    flex-direction: row;
+  }
+  .menu ul {
+    flex-direction: column;
+  }
+  .menu li {
+    border-top: 1px solid #fff;
+  }
+  #btn-menu:checked ~ .menu {/*me busca la clase menu*/
+    margin: 0;
+  }
 }
- #logo {
-   width: 25%;
-   height: 25%;
- }
