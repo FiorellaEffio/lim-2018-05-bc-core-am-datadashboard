@@ -15,12 +15,11 @@ describe('data', () => {
   it('debería exponer función processCohortData en objeto global', () => {
     assert.isFunction(window.processCohortData);
   });
-
+  const cohort = window.fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+  const courses = Object.keys(cohort.coursesIndex);
+  const { users, progress } = window.fixtures;
   describe('computeUsersStats(users, progress, courses)', () => {
 
-    const cohort = window.fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
-    const courses = Object.keys(cohort.coursesIndex);
-    const { users, progress } = window.fixtures;
 
     it('debería retornar arreglo de usuarios con propiedad stats', () => {
       const processed = window.computeUsersStats(users, progress, courses);
@@ -186,7 +185,11 @@ describe('data', () => {
 
   describe('filterUsers(users, filterBy)', () => {
 
-    it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)');
+    it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)',() => {
+      let myArrayFil = [{"id":"LZZiC91B4NddpaPTBJ1XpT9Ox8V2","name":"Fiorella","locale":"es-PE","signupCohort":"lim-2018-03-pre-core-pw","timezone":"America/Lima","role":"student"},{"id":"mIyuhjFX4uhASyDcWReNE5dcd2I2","github":"","locale":"es-ES","signupCohort":"lim-2018-03-pre-core-pw","timezone":"America/Lima","name":"Patricia Fiorella","linkedin":"","role":"student"},{"id":"pHuZDr9WjBV1qrU66QZlq2yhGmC2","signupCohort":"lim-2018-03-pre-core-pw","timezone":"America/Lima","name":"Fiorella Mosto","locale":"es-PE","role":"student"},{"id":"rosNOO9dNQQDo4TlClcMiFHEIfy2","name":"Fiorella","locale":"es-PE","signupCohort":"lim-2018-03-pre-core-pw","timezone":"America/Lima","role":"student"}]
+      assert.deepEqual(window.filterUsers(users,"fiorella"), myArrayFil);
+      assert.deepEqual(window.filterUsers(users,"FIORELLA"), myArrayFil);
+    });
 
   });
 
