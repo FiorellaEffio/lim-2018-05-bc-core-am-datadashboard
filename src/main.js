@@ -63,7 +63,38 @@ function beginApp() {
           search
         }
         // console.log(cohortByCampus[selector.selectedIndex].coursesIndex);
-        window.processCohortData(options);
+        let myFinalList = window.processCohortData(options);
+        let studentsOptions = document.getElementById("studentsOptions");
+        studentsOptions.innerHTML="";
+        studentsOptions.innerHTML="<tr><td>Nombre</td><td>Porcentaje</td><td>Ejercicios</td><td>Quizzes</td><td>Lecturas</td><td>Prom Quiz</td></tr>";
+
+        studentsOptions.appendChild(document.createElement('tr'));
+        let count = 1;
+        // console.log("div"+count)
+        myFinalList.forEach(function(element) {
+        let fileStudent = document.createElement('tr');
+        fileStudent.setAttribute("id", "student" + count);
+        let nameOfStudents = document.createElement('td');
+        nameOfStudents.innerText = element.stats.name;
+        let percentStudent = document.createElement('td');
+        percentStudent.innerText = element.stats.percent + "%";
+        let exercisesStudent = document.createElement('td');
+        exercisesStudent.innerText = element.stats.exercises.completed + " de " +element.stats.exercises.total;
+        let quizzesStudent = document.createElement('td');
+        quizzesStudent.innerText = element.stats.quizzes.completed + " de " +element.stats.quizzes.total;
+        let readsStudent = document.createElement('td');
+        readsStudent.innerText = element.stats.reads.completed + " de " +element.stats.reads.total;
+        let quizzesPromStudent = document.createElement('td');
+        quizzesPromStudent.innerText = element.stats.quizzes.scoreSum;
+        studentsOptions.appendChild(nameOfStudents);
+        studentsOptions.appendChild(percentStudent);
+        studentsOptions.appendChild(exercisesStudent);
+        studentsOptions.appendChild(quizzesStudent);
+        studentsOptions.appendChild(readsStudent);
+        studentsOptions.appendChild(quizzesPromStudent);
+        count++;
+        studentsOptions.appendChild(document.createElement('tr'));
+        });
       });
     });
   });
