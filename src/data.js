@@ -62,7 +62,7 @@ const computeUsersStats = (users, progress, courses) => {
   //Por ahora solo hay un curso
   let usersWithStats = {
     stats : {
-      name : element1.name,
+      name : (element1.name).replace(/\b\w/g, function(l){ return l.toUpperCase() }),//primeraletra de caa palabra enmayuscula
       percent: percentTotal,
       exercises : {
         total: exercisesTotal,//total de ejercicios autocorregidos
@@ -97,7 +97,7 @@ const sortUsers = (users, orderBy, orderDirection) => {
           return -1
       if (nameA > nameB)
           return 1
-      return 0 //default return value (no sorting)
+      // return 0 //default return value (no sorting)
     });
   }
   if(orderBy === "Porcentaje Completitud Total") {

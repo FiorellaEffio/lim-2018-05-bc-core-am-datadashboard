@@ -192,10 +192,44 @@ describe('data', () => {
     });
 
   });
-
+  let options = {
+    cohort: "lim-2018-03-pre-core-pw",
+    cohortData : {
+      users,//array en bruto users
+      progress,//objeto en bruto progress
+      coursesIndex : ["intro"]
+    },
+    orderBy:"Nombre",
+    orderDirection:"ASC",
+    search : "sadi"
+  }
   describe('processCohortData({ cohortData, orderBy, orderDirection, filterBy })', () => {
 
-    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter');
+    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter', () => {
+      assert.deepEqual(window.processCohortData(options),[{
+        stats: {
+          name : "Sadi",
+          percent: 100,
+          exercises : {
+            total: 2,
+            completed: 2,
+            percent: 100
+          },
+          reads : {
+            total: 11,
+            completed: 11,
+            percent: 100
+          },
+          quizzes : {
+            total: 3,
+            completed: 3,
+            percent: 100,
+            scoreSum: 263,
+            scoreAvg: 88
+          }
+        }
+      }]);
+    });
 
   });
 
