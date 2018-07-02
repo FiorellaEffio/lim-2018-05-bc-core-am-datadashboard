@@ -2,106 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name = "viewport" content = "width = device-width, user-scalable = no, initial-scale = 1.0">
     <title>Data Dashboard</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!------------------------------------------------------------------------------>
-    <header>
-        <img src="../img/logo.png" alt="logo" class="icon-login">
-        <h1>RANKING DE ESTUDIANTES</h1>
-    </header>
-    <!------------------------------------------------------------------------------>
-    <div class="nav-wrapper"><br>
-      <p>Bienvenida Alejandra</p><br>
-      <img src="../img/profile-ale.PNG" alt="profile" class="userProfile"><br><br><br><br>
-      <label class="cohorts">COHORTS</label>
-      <nav id="menu">
-        <div class="item">
-          <input type="checkbox" id="check1">
-          <label for="check1">Lima - Peru</label>
-          <ul><li><a href="#">2018-3</a></li>
-              <li><a href="#">2017-3</a></li>
-          </ul></div>
-       <div class="item">
-         <input type="checkbox" id="check2">
-         <label for="check2">Mexico Df</label>
-         <ul><li><a href="#">2018-3</a></li>
-             <li><a href="#">2017-3</a></li>
-         </ul></div>
-      <div class="item">
-       <input type="checkbox" id="check3">
-       <label for="check3">Santiago - Chile</label>
-       <ul><li><a href="#">2018-3</a></li>
-           <li><a href="#">2017-3</a></li>
-       </ul></div>
-      <div class="item">
-      <input type="checkbox" id="check4">
-      <label for="check4">Sao Paolo - Brasil</label>
-      <ul><li><a href="#">2018-3</a></li>
-          <li><a href="#">2017-3</a></li>
-      </ul></div>
-      </nav>
-    </div>
-    <!------------------------------------------------------------------------------>
-    <div id='container'>
-      <input id='submit-btn' type='submit' value='Buscar'>
-      <input id="search-keyword"  type="text" placeholder="buscar estudiante" required>
-      <label class="filtro">Filtrar por</label>
-          <select id="orderBy">
-             <option>Orden ascendente</option>
-             <option>Orden descendente</option>
-             <option>Completitud de Cursos</option>
-             <option>Porcentaje de lectura</option>
-             <option>Porcentaje de ejercicios</option>
-             <option>Porcentaje de quizzes</option>
-          </select> <br><br><br><br>
-    <!------------------------------------------------------------------------------>
-    <table role="table" id="table">
-      <thead role="rowgroup">
-        <tr role="row">
-          <th role="columnheader">Nombre</th>
-          <th role="columnheader">Curso</th>
-          <th role="columnheader">Complitud Curso</th>
-          <th role="columnheader">Complitud Lectura</th>
-          <th role="columnheader">Complitud Ejercicio</th>
-          <th role="columnheader">Complitud Quizz</th>
-        </tr>
-      </thead>
-      <tbody role="rowgroup">
-        <tr role="row">
-          <td role="cell">Ruth</td>
-          <td role="cell">JavaScript</td>
-          <td role="cell">70%</td>
-          <td role="cell">60%</td>
-          <td role="cell">50%</td>
-          <td role="cell">40%</td>
-        </tr>
-        <tr role="row">
-          <td role="cell">Evelyn</td>
-          <td role="cell">Html</td>
-          <td role="cell">70%</td>
-          <td role="cell">60%</td>
-          <td role="cell">50%</td>
-          <td role="cell">40%</td>
-        </tr>
-        <tr role="row">
-          <td role="cell">Noemi</td>
-          <td role="cell">Css</td>
-          <td role="cell">70%</td>
-          <td role="cell">60%</td>
-          <td role="cell">50%</td>
-          <td role="cell">40%</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-    <!------------------------------------------------------------------------------>
-    <footer>
-      <p>&copy; Laboratoria 2018</p>
-    </footer>
-    <!------------------------------------------------------------------------------>
+    <script src="main.js"></script>
   </body>
 </html>
