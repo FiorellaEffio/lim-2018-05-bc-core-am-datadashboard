@@ -72,8 +72,6 @@ function beginApp() {
         let count = 1;
         // console.log("div"+count)
         myFinalList.forEach(function(element) {
-        let fileStudent = document.createElement('tr');
-        fileStudent.setAttribute("id", "student" + count);
         let nameOfStudents = document.createElement('td');
         nameOfStudents.innerText = element.stats.name;
         let percentStudent = document.createElement('td');
@@ -90,14 +88,14 @@ function beginApp() {
         } else {
           quizzesPromStudent.innerText = "0";
         }
+        studentsOptions.innerHTML += "<tr>";
         studentsOptions.appendChild(nameOfStudents);
         studentsOptions.appendChild(percentStudent);
         studentsOptions.appendChild(exercisesStudent);
         studentsOptions.appendChild(quizzesStudent);
         studentsOptions.appendChild(readsStudent);
         studentsOptions.appendChild(quizzesPromStudent);
-        count++;
-        studentsOptions.appendChild(document.createElement('tr'));
+        studentsOptions.innerHTML += "</tr>";
         });
       });
     });
