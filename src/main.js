@@ -69,8 +69,6 @@ function beginApp() {
         studentsOptions.innerHTML="<tr><td>Nombre</td><td>Porcentaje</td><td>Ejercicios</td><td>Quizzes</td><td>Lecturas</td><td>Prom Quiz</td></tr>";
 
         studentsOptions.appendChild(document.createElement('tr'));
-        let count = 1;
-        // console.log("div"+count)
         myFinalList.forEach(function(element) {
         let nameOfStudents = document.createElement('td');
         nameOfStudents.innerText = element.stats.name;

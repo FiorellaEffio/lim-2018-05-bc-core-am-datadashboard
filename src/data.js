@@ -60,6 +60,7 @@ const computeUsersStats = (users, progress, courses) => {
     // console.log(percentTotal);
   }
   //Por ahora solo hay un curso
+  let quizzesProm = parseInt((quizzesScoreSum/quizzesCompleted).toFixed());
   let usersWithStats = {
     stats : {
       name : (element1.name).replace(/\b\w/g, function(l){ return l.toUpperCase() }),//primeraletra de caa palabra enmayuscula
@@ -79,7 +80,7 @@ const computeUsersStats = (users, progress, courses) => {
         completed: quizzesCompleted, // quizzes autocompletados
         percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
         scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: (quizzesScoreSum/quizzesCompleted).toFixed//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
+        scoreAvg: quizzesProm//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
       }
     }
   }
