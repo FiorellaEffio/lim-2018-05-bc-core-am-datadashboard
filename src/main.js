@@ -85,7 +85,11 @@ function beginApp() {
         let readsStudent = document.createElement('td');
         readsStudent.innerText = element.stats.reads.completed + " de " +element.stats.reads.total;
         let quizzesPromStudent = document.createElement('td');
-        quizzesPromStudent.innerText = element.stats.quizzes.scoreAvg;
+        if(element.stats.quizzes.scoreAvg>0){
+          quizzesPromStudent.innerText = element.stats.quizzes.scoreAvg;
+        } else {
+          quizzesPromStudent.innerText = "0";
+        }
         studentsOptions.appendChild(nameOfStudents);
         studentsOptions.appendChild(percentStudent);
         studentsOptions.appendChild(exercisesStudent);
@@ -98,12 +102,4 @@ function beginApp() {
       });
     });
   });
-}
-
-function validator(a,b) {
-  let result=0;
-  if(b!=0){
-    result = Math.round((a/b)*100)/100;
-  }
-  return result;
 }
