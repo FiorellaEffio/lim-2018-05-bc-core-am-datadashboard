@@ -1,0 +1,55 @@
+header {
+  background-color: black;
+}
+footer {
+  background-color: yellow;
+}
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 600;
+}
+#userPhoto {
+  border-radius: 100%;
+  border: solid 5px;
+  width: 30%;
+  height: 30%;
+}
+
+main {
+  float: left;
+  background-color: yellow;
+  width: 30%;
+  height: 220px;
+  margin: 0%;
+  margin-top: 1%;
+  padding-bottom: 22.5%;
+}
+table,td {
+	border: 1px solid black;
+}
+section {
+  background-color: red;
+}
+
+figure {
+  margin: 0%;
+  margin-top: 1%;
+  float: right;
+  width: 65%;
+  border: solid;
+  display: block;
+  height: 70px;
+  padding: 2%;
+  padding-bottom: 30%;
+}
+footer {
+  margin-top: 38.5%;
+  background-color: black;
+  color: white;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+}
+ #logo {
+   width: 25%;
+   height: 25%;
+ }
