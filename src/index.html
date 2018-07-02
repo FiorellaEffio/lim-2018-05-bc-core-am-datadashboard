@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - Laboratoria</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="dist/vertical-responsive-menu.min.css" rel="stylesheet">
   <link href="demo.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -17,13 +16,13 @@
       <button type="button" id="toggleMenu" class="logo toggle_menu">
         <i class="fa fa-bars"></i>
       </button>
-      <img class="logo" id="logo" src="img/logo-laboratoria2.png">
+      <img class="logo" alt="" id="logo" src="img/logo-laboratoria2.png">
     </div>
   </header>
 
   <nav class="vertical_nav">
     <div id="js-menu" class="menu">
-      <label for="">Selecciona sede</label>
+      <label>Selecciona sede</label>
       <select class="form-control" name="cohorts" id="seleccionaSede" onchange="changeSede()">
         <option value="lim">Lima - Perú</option>
         <option value="scl">Santiago - Chile</option>
@@ -32,10 +31,10 @@
         <option value="gdl">Guadalajara - México</option>
       </select>
       <br>
-      <label for="">Selecciona cohort</label>
+      <label>Selecciona cohort</label>
       <select name="cohorts" id="cohortsOptions" class="form-control"></select>
       <br>
-      <label for="">Ordenar</label>
+      <label>Ordenar</label>
       <select id="orderBy" class="form-control">
         <option>Nombre</option>
         <option>Porcentaje Completitud Total</option>
@@ -77,9 +76,10 @@
         </table>
       </div>
     </section>
+    <canvas id="canvas" width="300" height="300"></canvas>
   </div>
-  <script src="dist/vertical-responsive-menu.min.js" type="text/javascript"></script>
-  <script src="data.js" type="text/javascript"></script>
-  <script src="main.js" type="text/javascript"></script>
+  <script src="dist/vertical-responsive-menu.min.js"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
