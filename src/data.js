@@ -79,7 +79,7 @@ const computeUsersStats = (users, progress, courses) => {
         completed: quizzesCompleted, // quizzes autocompletados
         percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
         scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: parseInt((quizzesScoreSum/quizzesCompleted).toFixed())//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
+        scoreAvg: validator(quizzesScoreSum,quizzesCompleted)//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
       }
     }
   }
