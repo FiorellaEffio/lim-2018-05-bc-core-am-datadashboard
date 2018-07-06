@@ -7,10 +7,11 @@ Con esta aplicación se busca mejorar la manera en como las Training managers ti
 Finalmente estamos usando un _dashboard_ el cual se define como un espacio desde el cual un usuario puede tener acceso a la
 información y controles más relevantes.
 
-<!-- ## Demo
+## Demo
 
-Ingresa a la aplicación dando click aqui -> https://fiorellaeffio.github.io/lim-2018-05-bc-core-am-datadashboard/src/index.html -->
-<!-- ![Demo](img/demo-datadashboard.gif) -->
+![Demo](img/demo.gif)
+
+Ingresa a la aplicación dando click aqui -> https://fiorellaeffio.github.io/lim-2018-05-bc-core-am-datadashboard/src/index.html
 
 ### User Experience Design (¿Como lo pensamos?)
 
