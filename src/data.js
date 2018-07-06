@@ -4,101 +4,92 @@ const filterUsers = (users, search) => {
 }
 
 const computeUsersStats = (users, progress, courses) => {
-  let myList = [];
+  let myListWithStats = [];
   users.forEach(function(element1) {
-  // console.log(element1);
-  let uid = element1.id;
-  let progressUser = progress[uid];
-  let percentTotal = 0;
-  let exercisesTotal = 0;
-  let exercisesCompleted = 0;
-  let readsTotal = 0;
-  let readsCompleted = 0;
-  let quizzesTotal = 0;
-  let quizzesCompleted = 0;
-  let quizzesScoreSum = 0;
-  let empty = Object.keys(progressUser).length;
-  if(empty !== 0)
-  {
-    courses.forEach(courseName => {
-      if(progressUser.hasOwnProperty(courseName)) {
-        if(progressUser[courseName].hasOwnProperty('percent')) {
-          percentTotal += progressUser[courseName].percent;
-          let progressUserByCourse = progressUser[courseName];
-          // console.log(Object.values(progressUserByCourse.units));
-          Object.values(progressUserByCourse.units).forEach(unit => {
-            let exercises = Object.values(unit.parts);
-            // console.log(exercises);
-            exercises.forEach((part) => {
-              // console.log(part.type);
-              if(part.type === "read") {
-                readsCompleted += part.completed;
-                readsTotal++;
-              }
-              if(part.type === "quiz") {
-                quizzesCompleted += part.completed;
-                quizzesTotal++;
-                if(part.hasOwnProperty('score')){
-                  quizzesScoreSum += part.score;
+    let uidUser = element1.id;
+    let progressUser = progress[uidUser];
+    let percentTotal = 0;
+    let exercisesTotal = 0;
+    let exercisesCompleted = 0;
+    let readsTotal = 0;
+    let readsCompleted = 0;
+    let quizzesTotal = 0;
+    let quizzesCompleted = 0;
+    let quizzesScoreSum = 0;
+    let empty = Object.keys(progressUser).length;
+    if(empty !== 0) {
+      courses.forEach(courseName => {
+        if(progressUser.hasOwnProperty(courseName)) {
+          if(progressUser[courseName].hasOwnProperty('percent')) {
+            percentTotal += progressUser[courseName].percent;
+            let progressUserByCourse = progressUser[courseName];
+            Object.values(progressUserByCourse.units).forEach(unit => {
+              let exercises = Object.values(unit.parts);
+              exercises.forEach((part) => {
+                if(part.type === "read") {
+                  readsCompleted += part.completed;
+                  readsTotal++;
                 }
-              }
-              if(part.type === "practice") {
-                if(part.hasOwnProperty('exercises')) {
-                  Object.values(part.exercises).forEach(ejercicio => {
+                if(part.type === "quiz") {
+                  quizzesCompleted += part.completed;
+                  quizzesTotal++;
+                  if(part.hasOwnProperty('score')){
+                    quizzesScoreSum += part.score;
+                  }
+                }
+                if(part.type === "practice") {
+                  if(part.hasOwnProperty('exercises')) {
+                    Object.values(part.exercises).forEach(ejercicio => {
                       exercisesCompleted += ejercicio.completed;
                       exercisesTotal++;
-                  })
+                    })
+                  }
                 }
-              }
+              })
             })
-          })
+          }
+        }
+      })
+      percentTotal = Math.round((percentTotal/courses.length)*100)/100;
+    }
+    let quizzesProm = parseInt((quizzesScoreSum/quizzesCompleted).toFixed());
+    let usersWithStats = {
+      stats : {
+        name : (element1.name).replace(/\b\w/g, function(l){ return l.toUpperCase() }),//primeraletra de cada palabra en mayuscula
+        percent: percentTotal,
+        exercises : {
+          total: exercisesTotal,
+          completed: exercisesCompleted,
+          percent: parseInt((exercisesCompleted/exercisesTotal*100).toFixed())
+        },
+        reads : {
+          total: readsTotal,
+          completed: readsCompleted,
+          percent: parseInt((readsCompleted/readsTotal*100).toFixed())
+        },
+        quizzes : {
+          total: quizzesTotal,
+          completed: quizzesCompleted,
+          percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),
+          scoreSum: quizzesScoreSum,
+          scoreAvg: quizzesProm
         }
       }
-    })
-    // console.log(percentTotal);
-    percentTotal = Math.round((percentTotal/courses.length)*100)/100;
-    // console.log(percentTotal);
-  }
-  //Por ahora solo hay un curso
-  let quizzesProm = parseInt((quizzesScoreSum/quizzesCompleted).toFixed());
-  let usersWithStats = {
-    stats : {
-      name : (element1.name).replace(/\b\w/g, function(l){ return l.toUpperCase() }),//primeraletra de caa palabra enmayuscula
-      percent: percentTotal,
-      exercises : {
-        total: exercisesTotal,//total de ejercicios autocorregidos
-        completed: exercisesCompleted,//autocorregidos completados
-        percent: parseInt((exercisesCompleted/exercisesTotal*100).toFixed())//validator(exercisesCompleted,exercisesTotal)porcentaje de ejercicios autocorregidos autocompletados
-      },
-      reads : {
-        total: readsTotal,//total de lecturas presentes
-        completed: readsCompleted, //lecturas completadas
-        percent: parseInt((readsCompleted/readsTotal*100).toFixed())//validator(readsCompleted, readsTotal)porcentaje de lecturas
-      },
-      quizzes : {
-        total: quizzesTotal, //total quizzes presentes
-        completed: quizzesCompleted, // quizzes autocompletados
-        percent: parseInt((quizzesCompleted/quizzesTotal*100).toFixed()),//validator(quizzesCompleted, quizzesTotal)porcentaje de quizzes completados
-        scoreSum: quizzesScoreSum, //suma de puntuaciones de los _quizzes_ completados
-        scoreAvg: quizzesProm//validator(quizzesScoreSum, quizzesCompleted)promedio de puntuaciones en quizzes completados
-      }
     }
-  }
-  myList.push(usersWithStats);
+    myListWithStats.push(usersWithStats);
   });
-  return myList;
+  return myListWithStats;
 }
 
 const sortUsers = (users, orderBy, orderDirection) => {
   let myListByOrder =users;
   if(orderBy === "Nombre") {
     myListByOrder.sort( function(a, b) {
-      var nameA=a.stats.name.toLowerCase(), nameB=b.stats.name.toLowerCase()
-      if (nameA < nameB) //sort string ascending
-          return -1
+      var nameA = a.stats.name.toLowerCase(), nameB = b.stats.name.toLowerCase()
+      if (nameA < nameB)
+        return -1
       if (nameA > nameB)
-          return 1
-      // return 0 //default return value (no sorting)
+        return 1
     });
   }
   if(orderBy === "Porcentaje Completitud Total") {
@@ -129,19 +120,16 @@ const sortUsers = (users, orderBy, orderDirection) => {
   if (orderDirection === "DESC") {
     myListByOrder = myListByOrder.reverse();
   }
-
   return myListByOrder;//arreglo de usuarios ordenados
 }
 
 const processCohortData = (options) => {
   let users = options.cohortData.users;
-  // let cohort = options.cohort;
   let progress = options.cohortData.progress;
   let orderBy = options.orderBy;
   let orderDirection = options.orderDirection;
   let search = options.search;
   let courses = options.cohortData.coursesIndex;
-  // console.log(courses);
   let usersFiltered = filterUsers(users, search);
   let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
   let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
