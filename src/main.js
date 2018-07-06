@@ -1,3 +1,10 @@
+changeSede();
+document.getElementById('selectCampus').addEventListener("change", changeSede);
+var chargeAll = document.getElementById('buttonCharge');
+chargeAll.addEventListener("click", beginApp);
+var chargeSearch = document.getElementById('buttonSearch');
+chargeSearch.addEventListener("click", beginApp);
+
 function changeSede() {
   fetch('https://api.laboratoria.la/cohorts')
   .then((response) => {return response.json();})
@@ -86,9 +93,3 @@ function beginApp() {
     });
   });
 }
-changeSede();
-document.getElementById('selectCampus').addEventListener("onchange", changeSede);
-var chargeAll = document.getElementById('buttonCharge');
-chargeAll.addEventListener("click", beginApp);
-var chargeSearch = document.getElementById('buttonSearch');
-chargeSearch.addEventListener("click", beginApp);
