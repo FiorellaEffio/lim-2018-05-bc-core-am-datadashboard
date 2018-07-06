@@ -1,11 +1,11 @@
 //Mostrar los cohorts en lista para que el usuario seleccione
 changeSede();
-document.getElementById('seleccionaSede').addEventListener("onchange", changeSede);
+document.getElementById('selectCampus').addEventListener("onchange", changeSede);
 function changeSede() {
   fetch('https://api.laboratoria.la/cohorts')
   .then((response) => {return response.json();})
   .then((cohorts) => {
-    let selectorSede = document.getElementById('seleccionaSede');
+    let selectorSede = document.getElementById('selectCampus');
     let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
     let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
     document.getElementById("cohortsOptions").innerHTML = "";
@@ -29,7 +29,7 @@ function beginApp() {
   .then((response) => {return response.json();})
   .then((cohorts) => {
     //selector
-    let selectorSede = document.getElementById('seleccionaSede');
+    let selectorSede = document.getElementById('selectCampus');
     let sedeName = selectorSede.options[selectorSede.selectedIndex].value;
     let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
     let selector = document.getElementById('cohortsOptions');
