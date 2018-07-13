@@ -1,7 +1,4 @@
-const filterUsers = (users, search) => {
-  let myListFiltered = users.filter(user => (user.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1);
-  return myListFiltered;//lista de usuarios con coincidencia en search
-}
+const filterUsers = (users, search) => users.filter(user => (user.name.toUpperCase()).indexOf(search.toUpperCase()) !== -1);
 
 const computeUsersStats = (users, progress, courses) => {
   let myListWithStats = [];
@@ -124,15 +121,15 @@ const sortUsers = (users, orderBy, orderDirection) => {
 }
 
 const processCohortData = (options) => {
-  let users = options.cohortData.users;
-  let progress = options.cohortData.progress;
-  let orderBy = options.orderBy;
-  let orderDirection = options.orderDirection;
-  let search = options.search;
-  let courses = options.cohortData.coursesIndex;
-  let usersFiltered = filterUsers(users, search);
-  let usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
-  let myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
+  const users = options.cohortData.users;
+  const progress = options.cohortData.progress;
+  const orderBy = options.orderBy;
+  const orderDirection = options.orderDirection;
+  const search = options.search;
+  const courses = options.cohortData.coursesIndex;
+  const usersFiltered = filterUsers(users, search);
+  const usersWithStatus = computeUsersStats(usersFiltered, progress, courses);
+  const myListOrderAndFiltered = sortUsers(usersWithStatus, orderBy, orderDirection);
   return myListOrderAndFiltered;
 }
 
