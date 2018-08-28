@@ -1,26 +1,28 @@
-changeSede();
 document.getElementById('selectCampus').addEventListener("change", changeSede);
 var chargeAll = document.getElementById('buttonCharge');
 chargeAll.addEventListener("click", beginApp);
 var chargeSearch = document.getElementById('buttonSearch');
 chargeSearch.addEventListener("click", beginApp);
 
-function changeSede() {
-  fetch('https://api.laboratoria.la/cohorts')
-  .then((response) => {return response.json();})
-  .then((cohorts) => {
-    let selectCampus = document.getElementById('selectCampus');
-    let sedeName = selectCampus.options[selectCampus.selectedIndex].value;
-    let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
-    document.getElementById("cohortsOptions").innerHTML = "";
-    cohortByCampus.forEach(function(element) {
-      let nameOfCohort = document.createElement('option');
-      nameOfCohort.innerText = element.id;
-      let cohortsOptions = document.getElementById('cohortsOptions');
-      cohortsOptions.appendChild(nameOfCohort);
-    })
-  });
+function changeSede(cohorts) {
+  console.log(cohorts)
+  let selectCampus = document.getElementById('selectCampus');
+  let sedeName = selectCampus.options[selectCampus.selectedIndex].value;
+  let cohortByCampus = cohorts.filter(cohort => (cohort.id.toUpperCase()).indexOf(sedeName.toUpperCase()) !== -1);
+  document.getElementById("cohortsOptions").innerHTML = "";
+  cohortByCampus.forEach(function(element) {
+    let nameOfCohort = document.createElement('option');
+    nameOfCohort.innerText = element.id;
+    let cohortsOptions = document.getElementById('cohortsOptions');
+    cohortsOptions.appendChild(nameOfCohort);
+  })
 }
+const apiLaboratoria = (url, callback) => {
+  fetch(url)
+  .then((response) => {return response.json();})
+  .then((response) => callback(response))
+}
+apiLaboratoria('https://api.laboratoria.la/cohorts',changeSede);
 
 function beginApp() {
   fetch('https://api.laboratoria.la/cohorts')
